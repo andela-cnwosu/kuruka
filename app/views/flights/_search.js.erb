@@ -1,0 +1,72 @@
+<script type="text/JavaScript">
+
+  function viewDate() {
+    $(document).on('click', '.date-link', function(event){
+      var href = $(this).data('tab');
+      $('a[href="#' + href + '"]').trigger('click');
+      event.preventDefault();
+    });
+  }
+
+  $(document).on('click', '.book-now', function(event){
+    $('#select-form').trigger('submit');
+    event.preventDefault();
+  });
+
+  $(document).ready(function(){
+    var is_firefox = navigator.userAgent.indexOf('Firefox') > -1;
+
+    //open flight list
+    $('#flight_form').submit(function(event) {
+      event.preventDefault();
+      <% latest_flight_date = Flight.last.departure_date %>
+      if ($('.departure-select').val() == $('.arrival-select').val() && $('.departure-select').val() != "") {
+        $.notify('You cannot select the same departure and destination', 'error');
+      } 
+      else if ($('#datetimepicker').val() > '<%= latest_flight_date %>' && $('#datetimepicker').val() != ""){
+        $.notify('You cannot choose a date later than <%= full_date(latest_flight_date) %>', 'error');
+      } 
+      else {
+        $.post( $(this).prop('action'), $(this).serialize(), function( data ) {
+            $(".view-flights").html(data);
+        });
+        
+        var selected_page = $(this).find('.search-button').data('type');
+        $('.cd-flight.'+selected_page+'').addClass('slide-in');
+        $('.cd-flight-close').addClass('is-visible');
+
+        // firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+        if( is_firefox ) {
+          $('main').addClass('slide-out').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+            $('body').addClass('overflow-hidden');
+          });
+        } else {
+          $('main').addClass('slide-out');
+          $('body').addClass('overflow-hidden');
+        }
+      }
+
+    });
+
+    $(document).on('change', 'input:radio[name="flight_id"]', function(){
+       $(".search-div .btn").attr("disabled", false);
+    });
+
+    //close flight list
+    $(document).on('click', '.cd-overlay, .cd-flight-close', function(event){
+      event.preventDefault();
+      $('.cd-flight').removeClass('slide-in');
+      $('.cd-flight-close').removeClass('is-visible');
+
+      if( is_firefox ) {
+        $('main').removeClass('slide-out').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+          $('body').removeClass('overflow-hidden');
+        });
+      } else {
+        $('main').removeClass('slide-out');
+        $('body').removeClass('overflow-hidden');
+      }
+    });
+  });
+
+</script>

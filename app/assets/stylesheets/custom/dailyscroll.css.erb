@@ -1,0 +1,167 @@
+.horizontal-scrollable-tabs {
+  min-height: 50px;
+}
+
+.horizontal-scrollable-tabs .arrow-right {
+  float: right;
+}
+.horizontal-scrollable-tabs .arrow-left {
+  float: left;
+}
+/* Customize your arrows here */
+.horizontal-scrollable-tabs .scroller {
+  color: #0f93db;
+  padding: 10px 10px;
+  margin-top: 40px;
+  display: none;
+  i {
+    font-size: 28px;
+    cursor: pointer;
+  }
+}
+.horizontal-scrollable-tabs .scroller.disabled {
+  color: gray;
+}
+.horizontal-scrollable-tabs .horizontal-tabs .nav-tabs-horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+}
+
+.horizontal-scrollable-tabs .nav-tabs a {
+    color: #555555;
+    padding: 10px 30px;
+    background-color: #f0ffff;
+    border: 15px solid #f0f8ff;
+}
+
+.horizontal-scrollable-tabs .nav-tabs a .day {
+    font-size: 24px;
+}
+
+.horizontal-scrollable-tabs .nav-tabs a .day hr {
+    margin: 5px;
+}
+
+.horizontal-scrollable-tabs .nav-tabs > li > a:hover {
+    border-color: transparent;
+    background-color: #f0f8ff;
+}
+
+.horizontal-scrollable-tabs .nav-tabs > li.active > a,
+.horizontal-scrollable-tabs .nav-tabs > li.active > a:hover,
+.horizontal-scrollable-tabs .nav-tabs > li.active > a:focus {
+    background-color: #f0ffff;
+    border: 15px solid #f0f8ff;
+    cursor: default;
+    color: #0f93db;
+}
+
+.horizontal-scrollable-tabs .nav-tabs > li.active > a::before,
+.horizontal-scrollable-tabs .nav-tabs > li.active > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.horizontal-scrollable-tabs .nav-tabs > li.active > a::before,
+.horizontal-scrollable-tabs .nav-tabs > li.active > a::after {
+    border-width: 1.5em;
+    border-right-color: #0f93db;
+    border-bottom-color: #0f93db;
+}
+
+.tab-content.flight-content {
+  .message {
+    padding: 0 10px;
+    font-size: 16px;
+  }
+  .search-div {
+    float: right;
+    margin: 10px 10px;
+  }
+  .btn {
+    background-color: #07B3A1;
+    border-color: #07B3A1;
+    font-size: 16px;
+    outline: none;
+  }
+}
+
+.content-content td {
+    padding: 0 10px 30px;
+}
+/* As it has a mobile focus the scrollbar is removed */
+.horizontal-scrollable-tabs .horizontal-tabs .nav-tabs-horizontal::-webkit-scrollbar {
+  width: 0 !important;
+}
+/* It's good to add a min-width so that the items have the same width */
+.horizontal-scrollable-tabs .horizontal-tabs .nav-tabs-horizontal > li {
+  float: none;
+  max-width: 200px;
+  text-align: center;
+}
+
+.flight-content .table td:last-child {
+    width: 30%;
+}
+
+.content-price td,
+.passenger-content td {
+  margin-bottom: 30px;
+}
+
+.content-price,
+.passenger-content {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.content-price td:last-child {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+ul.available-dates {
+  padding: 20px 0;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  break-inside: avoid;
+  text-align: center;
+  li {
+    padding: 15px;
+    button {
+      text-decoration: none;
+      padding: .2em 1em;
+      background-color: #f0f8ff;
+      outline: none;
+      border: none;
+      color: #0f93db;
+    }
+    button:hover {
+      background-color: #f0ffff;
+    }
+  }
+}
+
+.fade {
+  display: none;
+}
+
+.fade.in.active {
+  display: block;
+}
+
+@media only screen and (max-width : 768px) {
+  ul.available-dates {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    text-align: left;
+  }
+}

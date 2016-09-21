@@ -1,0 +1,43 @@
+<% content_for :title do %>
+  Profile
+<% end %>
+<%= render partial: "users/page_heading", locals: {heading: current_user.first_name} %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="row">
+           <div class="form">
+              <%= form_for(@user, :html => {:id => "sign_up_user"},
+                                   :format => :json,
+                                   :remote => true ) do |form| %>
+              <div class="testimonial">
+                  <div class="media">
+                      <div class="pull-left profile-div">
+                        <div class="image-div">
+                          <%= image_tag @user.avatar.url(:medium), alt: "Avatar", id: "profile-image" %>
+                        </div>
+                        <div class="image-upload">
+                          <label for="file-input">
+                            <%= button_tag "Change Picture", class: 'btn btn-default btn-register change-btn', onclick: "$('#file-input').trigger('click'); return false;" %>
+                          </label>
+                          <%= form.file_field :avatar, id: "file-input" %>
+                        </div>
+                      </div>
+                      <div class="media-body">
+                          <blockquote>
+                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                            <%= form.text_field :first_name, class: 'form-control', placeholder: '* First Name', required: true %>
+                            <%= form.text_field :last_name, class: 'form-control', placeholder: '* Last Name', required: true %>
+                            <%= form.email_field :email, class: 'form-control', placeholder: '* Email', required: true %>
+                            <%= form.submit "Update Account", class: 'btn btn-default btn-register' %>
+                          </blockquote>
+                      </div>
+                  </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+</div>
+</div>

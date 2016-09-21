@@ -1,0 +1,9 @@
+<script>
+  $('#manage_booking_form').submit(function(event) {
+      event.preventDefault();
+      $.post( $(this).prop('action'), $(this).serialize(), function( data ) {
+          $(".retrieved-booking").html(data);
+      });
+        
+    });
+</script>

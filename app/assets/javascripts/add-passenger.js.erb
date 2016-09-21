@@ -1,0 +1,48 @@
+$(function(){
+    var passenger_count = $('#passenger_count').val();
+    for(var i = 0; i < passenger_count; i++) {
+        $('.add_passenger').trigger('click');
+    }
+
+    $(document).on('change', '#convert select', function(){
+      var rate = $(this).val();
+      $('.travel-class').each(function(){
+        var current_price = $(this).data('charge');
+        $(this).html(current_price * rate);
+        $('.currency').text($("select.currency-select option:selected").text());
+        $('input:radio.class-radio:checked').trigger('change');
+      });
+    });
+
+    $(document).on('change', 'input:radio.class-radio', function(){
+      var currency = $('.travel' + $(this).val() + ' .currency').text();
+      var price = $('.travel' + $(this).val() + ' .travel-class').text();
+      var tax = $('.travel' + $(this).val() + ' .travel-class').data('tax');
+      var total = price * tax;
+      var total_in_dollar = getTotalInDollar($(this).val());
+      if ($('#convert select').val() == 0) {
+        $('#convert select').val(1);
+      }
+      var total_in_currency = $('#convert select').val() * total_in_dollar;
+      $('.dollar-total').text(total_in_dollar.toFixed(2));
+      $('.currency-total').text(' ' + currency + ' ' + total_in_currency.toFixed(2));
+      $(this).parents('.form-group').find('.selected-fare').text(currency + " " + total.toFixed(2) + " (tax inclusive)");
+    });
+
+    function getTotalInDollar() {
+      var total_in_dollar = 0;
+      $('.nested-fields').each(function(){
+        var price_in_dollar = $('.travel' + $(this).find('.class-radio:checked').val() + ' .travel-class').data('charge');
+        var price_tax = $('.travel' + $(this).find('.class-radio:checked').val() + ' .travel-class').data('tax');
+        total_in_dollar += price_in_dollar * price_tax;
+      });
+      return total_in_dollar;
+    }
+
+    $(document).on('submit', '#booking_form', function(event){
+      if ($('.nested-fields').length == 0) {
+        event.preventDefault();
+        $.notify('You must fill in the information of at least one passenger.', 'error');
+      }
+    });
+});

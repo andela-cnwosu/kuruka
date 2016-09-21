@@ -1,0 +1,341 @@
+.stars .star:before,
+.stars .star:after,
+.bird:before,
+.bird:after,
+.plane .wings:before,
+.plane .wings:after,
+.plane .wings .fans .fan:before,
+.plane .wings .fans .fan:after,
+.plane .wheels:before,
+.plane .wheels:after,
+.plane .wheels .stand .wheel:before,
+.plane .wheels .stand .wheel:after,
+.lights .bulb:before,
+.lights .bulb:after,
+.plane-small:before,
+.plane-small:after,
+.plane-small .wing:before,
+.plane-small .wing:after,
+.plane-small .tail:after{
+	content:'';
+	position:absolute;
+}
+
+.stars{
+	top:0;
+	left:0;
+	color:#ccc;
+	height:55%;
+	width:100%;
+	overflow:hidden;
+}
+.stars .star{
+	top:5%;
+	left:5%;
+	width:2px;
+	height:2px;
+	background:#eee;
+	position:absolute;
+	border-radius:50%;
+	box-shadow:inherit;
+	box-shadow:30px 0,120px 60px,75px 120px,130px 120px,130px 170px,20px 110px,220px 0,260px 68px,1000px 0,800px 80px,700px 100px,630px 100px,522px 160px,900px 300px,900px 200px,945px 150px;
+}
+.stars .star:before{left:100px}
+.stars .star:after{top:80px}
+.stars .star:before,
+.stars .star:after{
+	width:2px;
+	height:2px;
+	background:inherit;
+	border-radius:inherit;
+}
+.stars .star.b{width:3px;height:3px;top:10%;left:10%}
+.stars .star.b:before{width:3px;height:3px}
+.stars .star.b:after{width:1px;height:1px}
+
+.stars .star.c{width:4px;height:4px;top:5%;left:30%}
+.stars .star.c:before{width:2px;height:2px}
+.stars .star.c:after{width:3px;height:3px}
+
+.stars .star.d{width:3px;height:3px;top:30%;left:5%}
+.stars .star.d:before{width:4px;height:4px}
+.stars .star.d:after{width:2px;height:2px}
+
+
+.birds{
+	top:50%;
+	left:50%;
+	z-index:0;
+	width:196px;
+	height:196px;
+	color:#eee;
+	position:fixed;
+	margin-top:-98px;
+	margin-left:-98px;
+}
+.birds .bird{
+	width:0;
+	height:0;
+	display:block;
+	position:relative;
+}
+.birds .bird:before,
+.birds .bird:after{
+	width:10px;
+	height:10px;
+	border-radius:50%;
+}
+.bird:before{
+	top:1px;
+	left:-8px;
+	border-top:2px solid ;
+	-webkit-transform: rotate(20deg);
+	        transform: rotate(20deg);
+}
+.bird:after{border-top:2px solid}
+.birds .bird.a{top:110px;left:-130px}
+.birds .bird.b{top:110px;left:-105px;-webkit-transform:scale(.8);transform:scale(.8)}
+.birds .bird.c{top:120px;left:-60px}
+.birds .bird.d{top:110px;left:175px}
+.birds .bird.e{top:100px;left:185px;-webkit-transform:scale(.8);transform:scale(.8)}
+.birds .bird.f{top:90px;left:220px;-webkit-transform:scale(.6);transform:scale(.6)}
+
+.plane{
+	top:300px;
+	left:300px;
+	z-index:0;
+	width:46px;
+	height:50px;
+	color:#eee;
+	position:fixed;
+	margin-top:-80px;
+	margin-left:-35px;
+	background:#eee;
+	border-radius:50px 50px 18px 18px;
+	-webkit-transform:rotate(-30deg);
+	        transform:rotate(-30deg);
+}
+.plane .wings{
+	left:50%;
+	bottom:10px;
+	width:500px;
+	height:100px;
+	position:absolute;
+	border-radius:50%;
+	margin-left:-250px;
+	border-bottom:10px solid;
+}
+.plane .wings:before{
+	left:50%;
+	width:166px;
+	height:15px;
+	bottom:10px;
+	border-radius:50%;
+	margin-left:-83px;
+	border-bottom:5px solid;
+}
+.plane .wings:after{
+	left:50%;
+	bottom:0;
+	margin-left:-4px;
+	border:4px solid transparent;
+	border-bottom:80px solid;
+}
+.plane .wings .sparkle{
+	left:50%;
+	top:20px;
+	z-index:0;
+	width:26px;
+	margin:auto;
+	height:26px;
+	margin-left:-13px;
+	position:absolute;
+	-webkit-transform:rotate(45deg);
+	        transform:rotate(45deg);
+}
+
+.plane .wings .fans{
+	width:inherit;
+	height:inherit;
+	position:relative;
+}
+.plane .wings .fans .fan{
+	border:0 solid;
+	position:absolute;
+	border-radius:50%;
+	display:inline-block;
+}
+.plane .wings .fans .fan.fan-left-small,
+.plane .wings .fans .fan.fan-right-small{border-width:15px}
+
+.plane .wings .fans .fan.fan-left-big,
+.plane .wings .fans .fan.fan-right-big{border-width:16px}
+
+.plane .wings .fans .fan.fan-left-small{left:90px;bottom:-15px}
+.plane .wings .fans .fan.fan-left-big{left:140px;bottom:-22px}
+.plane .wings .fans .fan.fan-right-small{right:90px;bottom:-15px}
+.plane .wings .fans .fan.fan-right-big{right:140px;bottom:-22px}
+
+.plane .wings .fans .fan.fan-left-small:before,
+.plane .wings .fans .fan.fan-right-small:before{left:-30px;top:-20px;-webkit-transform: rotate(45deg);transform: rotate(45deg)}
+.plane .wings .fans .fan.fan-left-small:after,
+.plane .wings .fans .fan.fan-right-small:after{right:-30px;top:-16px;-webkit-transform: rotate(45deg);transform: rotate(45deg)}
+.plane .wings .fans .fan.fan-right-small:before{top:-16px}
+.plane .wings .fans .fan.fan-right-small:after{top:-20px}
+
+.plane .wheels{
+	top:38px;
+	left:50%;
+	width:150px;
+	margin:auto;
+	margin-left:-75px;
+	position:relative;
+	text-align:center;
+}
+.plane .wheels:before,
+.plane .wheels:after{
+	top:-3px;
+	height:20px;
+	border:2px solid;
+}
+.plane .wheels:before{left:42px;-webkit-transform:rotate(45deg);transform:rotate(45deg)}
+.plane .wheels:after{right:42px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+.plane .wheels .stand{
+	width:0;
+	height:25px;
+	margin:0 15px;
+	border:2px solid;
+	position:relative;
+	display:inline-block;
+}
+.plane .wheels .stand .wheel{
+	left:50%;
+	height:0;
+	width:14px;
+	bottom:-2px;
+	display:block;
+	border:2px solid;
+	margin-left:-7px;
+	position:absolute;
+}
+.plane .wheels .stand .wheel:before,
+.plane .wheels .stand .wheel:after{
+	top:50%;
+	height:14px;
+	margin-top:-7px;
+	border:3px solid;
+	border-radius:4px;
+}
+.plane .wheels .stand .wheel:before{left:-5px}
+.plane .wheels .stand .wheel:after{right:-5px}
+
+.plane .wings .fans .fan.fan-left-small:before,
+.plane .wings .fans .fan.fan-left-small:after,
+.plane .wings .fans .fan.fan-right-small:before,
+.plane .wings .fans .fan.fan-right-small:after{
+	width:16px;
+	height:16px;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+.landed-plane{
+	top:55%;
+	left:50%;
+	width:196px;
+	color:#eee;
+	position:fixed;
+	margin-left:-98px;
+}
+.plane-small{
+	width:90px;
+	height:10px;
+	position:relative;
+	background:#eee;
+	border-radius:0 15px 5px 80px / 0 7px 5px 10px;
+}
+.plane-small:before{
+	width:0;
+	height:0;
+	border:11px solid transparent;
+	border-top:4px solid;
+	border-right:0;
+	left:-8px;
+}
+.plane-small:after{
+	top:-1px;
+	width:2px;
+	height:2px;
+	right:40px;
+	background:inherit;
+}
+.plane-small .tail,
+.plane-small .wing,
+.plane-small .wheel{
+	position:absolute;
+}
+.plane-small .tail{
+	width:0;
+	top:-5px;
+	height:5px;
+	border:0 solid transparent;
+	border-left:4px solid;
+	border-bottom:0;
+	-webkit-transform:skewX(25deg);
+	        transform:skewX(25deg);
+}
+.plane-small .tail:after{
+	border:5px solid transparent;
+	border-left:5px solid;
+	border-bottom:0;
+}
+.plane-small .wing{
+	left:35px;
+	height:3px;
+	width:15px;
+	bottom:-2px;
+	background:inherit;
+	border-radius:0 1px 60% 0;
+}
+.plane-small .wing:before{
+	top:-1px;
+	width:8px;
+	height:2px;
+	left:-10px;
+	background:inherit;
+	border-radius:0 0 3px 3px;
+}
+.plane-small .wing:after{
+	top:-2px;
+	height:4px;
+	width:10px;
+	right:-15px;
+	background:inherit;
+	border-radius:50% 0 0 50%;
+	-webkit-transform:rotate(4deg);
+	        transform:rotate(4deg);
+}
+.plane-small .wheel{
+	width:3px;
+	height:5px;
+	right:10px;
+	bottom:-4px;
+	background:inherit;
+	border-radius:0 0 5px 5px;
+}
+
+.plane-small.a{
+	top:-5px;
+	left:-220px;
+}
+.plane-small.b{
+	top:-260px;
+	right:-325px;
+	-webkit-transform:rotate(-180deg) rotateX(-180deg);
+	        transform:rotate(-180deg) rotateX(-180deg);
+}
+.plane-small.c{
+	top:-230px;
+	right:-450px;
+	color:#eee;
+	background:#eee;
+}

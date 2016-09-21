@@ -1,0 +1,9 @@
+<% content_for :heading do %>
+  You just got mail!
+<% end %>
+<h2 style="font-size: 22px; font-weight: 600; line-height: 1.25; margin: 0 0 20px; padding: 0;">Hi Kuruka,</h2>
+              
+<p style="font-size: 16px; margin: 0 0 20px; padding: 0;">
+    <%= @contact.name %> has a message for you... 
+    <p style="border-left: 4px solid #d4e6e8; padding: 0 20px; margin: 0;"><%= @contact.message %></p>
+</p>

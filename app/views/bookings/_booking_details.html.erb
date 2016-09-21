@@ -1,0 +1,99 @@
+<% flight = booking.decorated_flight %>
+<% passengers = booking.passengers %>
+<ul class="nav nav-tabs ticket-tab">
+  <% passengers.each_with_index do |passenger, index| %>
+    <li class="<%= index == 0 ? 'active' : '' %>">
+      <a href="#passenger<%= index %>" data-toggle="tab"><%= passenger.full_name %></a>
+    </li>
+  <% end %>
+</ul>
+<div class="tab-content">
+  <div class="top-20 text-right">
+    <% if flight.departed? %>
+      <%= tooltip_element("Edit Reservation") %>
+    <% else %>
+      <%= link_to "Edit Reservation", edit_booking_path(booking) %>
+    <% end %>
+  </div>
+  <% passengers.each_with_index do |passenger, index| %>
+    <div class="tab-pane fade <%= index == 0 ? 'active in' : '' %>" id="passenger<%= index %>">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="ticket">
+              <div class="row perforated first">
+                <%= image_tag "logo.png", class: "logo" %>
+                <div class="ticket-right">
+                  <div class="ticket-label">Flight Number</div>
+                  <div class="num"><%= flight.aircraft.tail_number %></div>
+                </div>
+              </div>
+              <div class="row perforated destinations">
+                <div class="ticket-left">
+                  <div class="ticket-label">Departing</div>
+                  <div class="airport"><%= flight.route.departure_airport.iata_code %></div>
+                  <div class="city"><%= flight.route.departure_airport.city %></div>
+                </div>
+
+                <svg id="plane" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                  <g>
+                    <path d="M12.5,50L6.25,31.25h6.25L25,43.75h25L31.25,6.25h6.25l31.25,37.5h12.5c0,0,12.5,0,12.5,6.25s-12.5,6.25-12.5,6.25h-12.5   L37.5,93.75h-6.25L50,56.25H25l-12.5,12.5H6.25L12.5,50z" />
+                  </g>
+                </svg>
+
+                <div class="ticket-right">
+                  <div class="ticket-label">Arriving</div>
+                  <div class="airport"><%= flight.route.arrival_airport.iata_code %></div>
+                  <div class="city"><%= flight.route.arrival_airport.city %></div>
+                </div>
+              </div>
+              <div class="row normRow">
+                <div class="col-md-7 col">
+                  <div class="ticket-label">Passenger</div>
+                  <div class="col"><%= passenger.full_name %></div>
+                </div>
+                <div class="col-md-5 col ticket-right">
+                  <div class="ticket-label">Amount (in USD)</div>
+                  <div>$ <%= passenger.airfare.total_fare_in_dollar %></div>
+                </div>
+              </div>
+              <div class="row normRow">
+                <div class="col-md-7 col">
+                  <div class="ticket-label">Telephone</div>
+                  <div class="col"><%= passenger.phone %></div>
+                </div>
+                <div class="col-md-5 col ticket-right">
+                  <div class="ticket-label">Status</div>
+                  <div><%= passenger.checked_in? ? 'Checked in' : 'Paid' %></div>
+                </div>
+              </div>
+              <div class="row normRow">
+                <div class="col-md-7 col">
+                  <div class="ticket-label"><%= flight.pastize("Depart") %> in</div>
+                  <div class="<%= flight.departed? ? '' : 'countdown' %>" data-countdown="<%= flight.departure_date %>"><%= date_human_format(flight.departure_date) %></div>
+                </div>
+                <div class="col-md-5 col ticket-right">
+                  <div class="ticket-label">Booking Reference</div>
+                  <div><%= @booking.booking_ref %></div>
+                </div>
+              </div>
+              <div class="row normRow">
+                <div class="col-md-7 col">
+                  <div class="ticket-label depart-label"><%= flight.pastize("Depart") %> at</div>
+                  <div><%= time(flight.departure_date) %></div>
+                </div>
+                <div class="col-md-5 col ticket-right">
+                  <div class="ticket-label arrive-label"><%= flight.pastize("Arrive") %> at</div>
+                  <div><%= time(flight.arrival_date) %></div>
+                </div>
+              </div>
+              <div class="row">
+              <div class="smalltext">
+                <span>Use your booking reference above to make changes to or delete this booking.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

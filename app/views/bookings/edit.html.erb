@@ -1,0 +1,12 @@
+<% content_for :title do %>
+  Edit Booking
+<% end %>
+<%= render partial: "users/page_heading", locals: {heading: "Edit Booking #{@booking.booking_ref}"} %>
+<div class="container">
+  <div class="col-md-12">
+    <div class="row table-content">
+      <%= render 'form', flight: @booking.flight %>
+    </div>
+  </div>
+</div>
+

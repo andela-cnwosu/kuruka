@@ -1,0 +1,20 @@
+<% content_for :heading do %>
+  You just updated your reservation!
+<% end %>
+<h2 style="font-size: 22px; font-weight: 600; line-height: 1.25; margin: 0 0 20px; padding: 0;">Hi <%= @booking.user_first_name %>,</h2>
+              
+<p style="font-size: 16px; margin: 0 0 20px; padding: 0;">
+    You have successfully updated your reservation for flight with booking reference <%= @booking.booking_ref %>. Changes have been made in your ticket. Please click the link below to view updated ticket.
+    <p>Thanks for using Kuruka.</p>
+</p>
+
+<table align="center">
+    <tr style="font-size: 100%; margin: 0; padding: 0;">
+        <td align="center">
+            <p >
+                <a href="<%= @confirmation_path %>" target="_blank" style="color: white; text-decoration: none; font-weight: bold; border-radius: 2px; background: #0f93db; margin: 0; padding: 10px; border: none;">View your ticket here
+                </a>
+            </p>
+        </td>
+    </tr>
+</table>

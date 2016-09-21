@@ -1,0 +1,39 @@
+<div class="form-group button-form-group">
+    <div class="controls">
+      <button class="collapsed-button" data-toggle="collapse" data-target="#demo">
+        <%= image_tag "envelope.svg", alt: "logo" %>
+      </button>
+    </div>
+</div>
+<section class="col-md-4 col-sm-4 col-xs-10 fixed-form">
+    <div id="demo" class="collapse">
+        <div class="contact-form bottom">
+            <div>
+                <h3 class="pull-left">Contact Us</h3>
+                <a href="javascript: $('.collapsed-button').trigger('click');">
+                    <i class="fa fa-remove pull-right"></i>
+                </a>
+            </div>
+            <%= form_for(:contact, :html => {:id => "main-contact-form"},
+                         :format => :json,
+                         :url => contact_path,
+                         :remote => true ) do |form| %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <div class="form-group">
+                    <%= form.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+                </div>
+                <div class="form-group">
+                    <%= form.email_field :email, class: 'form-control', placeholder: 'Email', required: true %>
+                </div>
+                <div class="form-group">
+                    <%= form.text_area :message, class: 'form-control', id: 'message', rows: 8, placeholder: 'Message', required: true %>
+                </div>
+                <div class="form-group button-form-group">
+                    <div class="controls">
+                        <%= form.submit "Submit" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

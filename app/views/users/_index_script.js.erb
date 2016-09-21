@@ -1,0 +1,18 @@
+<script>
+  $(function() {
+    // Geolocation
+    var requestUrl = "http://ip-api.com/json";
+
+    $.ajax({
+      url: requestUrl,
+      type: 'GET',
+      success: function(location) {
+        var city = location.city ? location.city : location.regionName;
+        $('.location').html("How is " + city + ", " + location.country + " today? Want to go somewhere else?");
+      },
+      error: function(err) {
+        $('.location').html("How's your day? Want to go somewhere fun today?");
+      }
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+<div class="travel-class-demo">
+  Choose class of travel:
+  <% flight.route.airfares.each do |airfare| %>
+    <div></div>
+    <%= airfare.travel_class.name %> (
+    <span class="travel<%= airfare.id %>">
+      <span class="currency">USD</span>
+      <span class="travel-class" data-tax="<%= airfare.travel_class.tax_percent %>" data-charge="<%= airfare.service_charge_in_dollar %>">
+        <%= airfare.service_charge_in_dollar %>
+      </span>
+    </span>
+    )
+  <% end %>
+  <span id="convert">
+    Convert to:
+    <%= select_tag :country, options_for_select((Country.all).map{|country| ["#{country.iso_currency}", country.exchange_rate]}), {include_blank: true, class: 'currency-select form-control'} %>
+  </span>
+</div>
+<%= form_for @booking, html: {id: "booking_form"} do |form| %>
+  <%= form.hidden_field :flight_id %>
+  <%= hidden_field_tag :passenger_count, @passenger_count %>
+  <%= form.hidden_field :user_id, value: current_user_id %>
+  <%= form.fields_for :passengers do |passenger| %>
+    <%= render 'passenger_fields', f: passenger %>
+  <% end %>
+  <br>
+  <div class="links pull-left">
+    <%= link_to_add_association content_tag(:span, 'Add Passenger', class: "add_passenger"), form, :passengers, :class => 'btn btn-primary' %> 
+  </div>
+  <div class="total-cost pull-right">
+    Total (USD <span class="dollar-total"><%= get_booking_cost @booking %></span>):
+    <span class="currency-total">USD <%= get_booking_cost @booking %></span> 
+  </div>
+  <% unless current_user %>
+    <div class="clear">
+      <div class="form-group">
+        <p>Please enter a valid email to receive notifications</p>
+        <%= form.email_field :passenger_email, class: "form-control", placeholder: "* Passenger Email", required: true %>
+      </div>
+    </div>
+  <% end %>
+  <%= form.submit @booking.id ? "Update Reservation" : "Book Now", class: "btn btn-primary book"  %>
+<% end %>

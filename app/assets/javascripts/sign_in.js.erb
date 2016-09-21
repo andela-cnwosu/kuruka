@@ -1,0 +1,27 @@
+function shakeModal(message) {
+    $('#loginModal .modal-dialog').addClass('shake');
+    $('.error').addClass('alert alert-danger').html(message + '<a class="close" data-dismiss="alert">×</a>');
+    $('input[type="password"]').val('');
+    setTimeout( function(){ 
+        $('#loginModal .modal-dialog').removeClass('shake'); 
+    }, 1000 ); 
+}
+
+function callAjax(form, event) {
+    event.preventDefault();
+    $.post( form.prop('action'), form.serialize(), function( data ) {
+        if(data.errors) {
+            shakeModal(data.errors);        
+        }
+    });    
+}
+$(function(){
+
+    $('#sign_in_user').submit(function(event) {
+        callAjax($(this), event)
+    });
+
+    $('#sign_up_user').submit(function(evt){
+        callAjax($(this), event)
+    });
+})

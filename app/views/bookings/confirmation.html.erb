@@ -1,0 +1,9 @@
+<% content_for :title do %>
+  Confirmation
+<% end %>
+<%= render partial: "users/page_heading", locals: { heading: @booking.flight.departed? ? 'Past Booking Confirmation' : 'Booking Confirmed!' } %>
+<%= render partial: "users/heading_caption", locals: { caption: @booking.flight.departed? ? confirmed_past_booking_message : confirmed_booking_message } %>
+<div class="container">
+  <%= render partial: "bookings/booking_details", locals: {booking: @booking} %>
+</div>
+

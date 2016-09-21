@@ -1,0 +1,66 @@
+<% content_for :title do %>
+  Book Flight
+<% end %>
+<% flight = @booking.flight %>
+<section>
+  <div class="container">
+    <div class="stepwizard">
+      <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+          <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+          <p>Passenger Details</p>
+        </div>
+        <div class="stepwizard-step">
+          <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+          <p>Payment</p>
+        </div>
+        <div class="stepwizard-step">
+          <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+          <p>Confirmation</p>
+        </div>
+      </div>
+    </div>
+    <div class="row table-content">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>You requested:</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6>From</h6>
+                <h5><%= flight.route.departure_airport.iata_code %></h5>
+              </td>
+              <td>
+                <h6>To</h6>
+                <h5><%= flight.route.arrival_airport.iata_code %></h5>
+              </td>
+              <td>
+                <h6>Flight Number</h6>
+                <h5><%= flight.aircraft.tail_number %></h5>
+              </td>
+              <td>
+                <h6>Date</h6>
+                <h5><%= short_date_time(flight.departure_date) %></h5>
+              </td>
+              <td>
+                <h6>Passengers</h6>
+                <h5><%= @passenger_count %></h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row setup-content" id="step-1">
+        <div class="col-md-12">
+        <h3> Please add the details of the passengers.</h3>
+        <%= render "form", flight: flight %>
+      </div>
+    </div>
+  </div>
+</section>

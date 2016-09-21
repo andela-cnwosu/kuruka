@@ -1,0 +1,25 @@
+<div class="nested-fields form-inline" id ="nested-fields">
+  <div class="form-group">
+    <%= f.text_field :first_name, class: "form-control", placeholder: "* First Name", required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :last_name, class: "form-control", placeholder: "* Last Name", required: true %>
+  </div>
+  <div class="form-group">
+      <%= f.text_field :phone, class: "form-control", placeholder: "Phone" %>
+  </div>
+  <div class="form-group">
+    <% @booking.flight.route.airfares.each do |airfare| %>
+      <label class="control control-radio">
+        <%= f.radio_button :airfare_id, airfare.id, class: "class-radio", required: true %>
+        <div class="control-indicator <%= convert_to_html_class(airfare.travel_class.name) %>"></div>
+      </label>
+    <% end %>
+    <small class="selected-fare"></small>
+  </div>
+  
+  <div class="links pull-right">
+    <%= link_to_remove_association "Delete", f, class: "btn btn-danger", confirm: "Are you sure?" %>
+  </div>
+  <hr>
+</div>

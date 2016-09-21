@@ -1,0 +1,33 @@
+<section id="home-slider">
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="main-slider">
+                    <div class="col-md-5 col-sm-12">
+                        <% if signed_in? %>
+                            <div class="location-div">
+                                <h1>Hi, <%= @user.first_name %></h1>
+                                <h3 class="location"></h3>
+                            </div>
+                        <% else %>
+                            <div class="slide-text">
+                                <h1>Fly Nigeria | Fly Kenya</h1>
+                                <p>Don't think about the journey... We have it all figured out!</p>
+                                <%= link_to 'Sign In', '#', class: 'btn btn-common', data: {toggle: 'modal', target: '#loginModal'} %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="col-md-7 col-sm-12">
+                        <%= render 'flights/search_form' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="cd-overlay"></div>
+</main>
+
+<div class="cd-flight view-flights"></div>
+
+<a href="#0" class="cd-flight-close fa fa-remove"></a>
+<%= render partial: 'flights/search', formats: [:js] %>

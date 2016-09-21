@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>500 Error | Kuruka</title>
+        <%= favicon_link_tag 'ico/k-logo.png', rel: 'apple-touch-icon' %>
+        <%= favicon_link_tag 'ico/k-logo.png', rel: 'shortcut icon' %>
+        <%= stylesheet_link_tag 'error', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+    <body>
+        <div class="plane">
+            <div class="wings">
+                <div class="fan">
+                    <div class="fan-wings">
+                        <div class="fan-a"></div>
+                        <div class="fan-b"></div>
+                        <div class="fan-c"></div>
+                        <div class="fan-d"></div>
+                    </div>
+                </div>
+                <div class="cat">
+                    <div class="legs"></div>
+                </div>
+            </div>
+            <div class="wheel">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+        <section id="error-page">
+            <div class="error-page-inner">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="text-center">
+                                <h2>INTERNAL SERVER ERROR</h2>
+                                <p>We're sorry, but something went wrong.</p>
+                                <p>If you are the application owner check the logs for more information.</p>
+                                <a href="/" class="btn btn-error">RETURN TO THE HOMEPAGE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    </html>
+

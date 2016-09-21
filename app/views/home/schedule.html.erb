@@ -1,0 +1,69 @@
+<% content_for :title do %>
+  Schedule
+<% end %>
+<%= render partial: "users/page_heading", locals: {heading: 'Our Schedule'} %>
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(function() {
+        var currentYear = new Date().getFullYear();
+
+        $('#calendar').calendar({ 
+            enableContextMenu: true,
+            enableRangeSelection: true,
+            mouseOnDay: function(e) {
+                if(e.events.length > 0) {
+                    var content = '';
+                    
+                    for(var i in e.events) {
+                        content += '<div class="event-tooltip-content">'
+                                    + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                                    + '<div class="event-location">' + e.events[i].location + '</div>'
+                                    + '<div class="event-startDate">' + e.events[i].startDate + '</div>'
+                                    + '</div><br>';
+                    }
+                
+                    $(e.element).popover({ 
+                        trigger: 'manual',
+                        container: 'body',
+                        html:true,
+                        content: content
+                    });
+                    
+                    $(e.element).popover('show');
+                }
+            },
+            mouseOutDay: function(e) {
+                if(e.events.length > 0) {
+                    $(e.element).popover('hide');
+                }
+            },
+            dayContextMenu: function(e) {
+                $(e.element).popover('hide');
+            },
+            dataSource: getEvents()
+        });
+
+        function getEvents() {
+            var arr = new Array();
+            <% @flights.each_with_index do |flight, index| %>
+                arr[<%= index %>] = {
+                    id: <%= index %>,
+                    name: '<%= flight.route.name %>',
+                    location: '<%= "#{flight.route.departure_airport.city} - #{flight.route.arrival_airport.city}" %>',
+                    startDate: new Date("<%= flight.departure_date %>"),
+                    endDate: new Date("<%= flight.arrival_date %>")
+                }
+            <% end %>
+            return arr
+        }
+    });
+</script>

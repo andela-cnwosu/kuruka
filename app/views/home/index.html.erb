@@ -1,0 +1,111 @@
+<% content_for :title do %>
+  Home
+<% end %>
+<div class="stars">
+    <% ("a".."d").each do |letter| %>
+        <span class="star <%= letter %>"></span>
+    <% end %>
+</div>
+<div class="birds">
+    <% ("a".."f").each do |letter| %>
+        <span class="bird <%= letter %>"></span>
+    <% end %>
+</div>
+<div class="plane">
+    <div class="wings">
+        <div class="sparkle"></div>
+        <div class="fans">
+            <span class="fan fan-left-small"></span><span class="fan fan-left-big"></span>
+            <span class="fan fan-right-small"></span><span class="fan fan-right-big"></span>
+        </div>
+    </div>
+    <div class="wheels">
+        <% (1..3).each do |letter| %>
+            <div class="stand"><span class="wheel"></span></div>
+        <% end %>
+    </div>
+</div>
+<div class="landed-plane">
+    <% ("a".."c").each do |letter| %>
+        <div class="plane-small <%= letter %>"><div class="tail"></div><div class="wing"></div>
+        <div class="wheel"></div></div>
+        <span class="bird <%= letter %>"></span>
+    <% end %>
+</div>
+                    
+<%= render 'application/booking_search' %>
+
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="action take-tour">
+                <div class="col-sm-7 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <h1 class="title">Upcoming Flights</h1>
+                </div>
+            </div>
+            <div id="team-carousel" class="carousel slide wow fadeIn" data-ride="carousel" data-wow-duration="400ms" data-wow-delay="400ms">
+                <ol class="carousel-indicators visible-xs">
+                    <li data-target="#team-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#team-carousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <% Flight.top_recent.each do |flight| %>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="team-single-wrapper">
+                                    <div class="team-single">
+                                        <div class="person-thumb">
+                                            <div class="post-content overflow">
+                                                <h2 class="post-title"><%= flight.name %></h2>
+                                                <h3 class="post-author"><%= flight.route_name %></h3>
+                                                <p>Flight from <%= flight.route_airports %></p>
+                                                <%= full_date_time(flight.departure_date) %>
+                                                <div class="post-bottom overflow">
+                                                    <ul class="post-nav">
+                                                        <li>
+                                                        <%= form_for(:flight_select, :url => select_path, html: { id: 'select-form'} ) do |form| %>
+                                                        <%= link_to '<i class="fa fa-ticket"></i>Book flight'.html_safe, '#', class: 'book-now' %>
+                                                        <%= hidden_field_tag 'flight_id', flight.id%>
+                                                        <% end %>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="item">
+                        <% Flight.next_recent.each do |flight| %>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="team-single-wrapper">
+                                    <div class="team-single">
+                                        <div class="person-thumb">
+                                            <div class="post-content overflow">
+                                                <h2 class="post-title"><%= flight.name %></h2>
+                                                <h3 class="post-author"><%= flight.route_name %></h3>
+                                                <p>Flight from <%= flight.route_airports %></p>
+                                                <%= full_date_time(flight.departure_date) %>
+                                                <div class="post-bottom overflow">
+                                                    <ul class="post-nav">
+                                                        <li><a href="#"><i class="fa fa-ticket"></i>Book flight</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left team-carousel-control hidden-xs" href="#team-carousel" data-slide="prev">left</a>
+                <a class="right team-carousel-control hidden-xs" href="#team-carousel" data-slide="next">right</a>
+            </div>
+        </div>
+    </div>
+</section>

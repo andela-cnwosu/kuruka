@@ -1,0 +1,29 @@
+<% content_for :title do %>
+  Manage Bookings
+<% end %>
+<%= render partial: "users/page_heading", locals: {heading: 'Manage Bookings'} %>
+<%= render partial: "users/heading_caption", locals: { caption: "Use the booking reference number on your ticket to retrieve bookings here." } %>
+<div class="container">
+  <div class="col-md-12">
+    <div class="row table-content">
+      <%= form_for(:booking, :html => {:id => "manage_booking_form"},
+                   :format => :json,
+                   :url => retrieve_booking_path,
+                   :remote => true ) do |form| %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="form-group">
+          <div class="controls">
+            <%= form.text_field :booking_ref, class: "floatLabel", required: true %>
+            <%= form.label 'Booking Reference Number' %>
+          </div>
+        </div>
+        
+        <div class="text-right">
+          <%= form.submit 'Find Reservation', :class => 'btn btn-primary' %> 
+        </div>
+      <% end %>
+      <div class="retrieved-booking top-20"></div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'manage_bookings', formats: [:js] %>

@@ -1,0 +1,15 @@
+//= require jquery
+//= require jquery_ujs
+//= require wow.min
+//= require turbolinks
+//= require bootstrap-sprockets
+//= require bootstrap-year-calendar
+//= require cocoon
+//= require moment
+//= require bootstrap-datetimepicker
+//= require login-register
+//= require dailyscroll
+//= require sign_in
+//= require notify
+//= require add-passenger
+//= require booking-ticket

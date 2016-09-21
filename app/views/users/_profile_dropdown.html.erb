@@ -1,0 +1,35 @@
+<a class="dropdown-toggle" id="profile-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <%= image_tag @user.avatar.url(:thumb), alt: "Avatar", class: "img-circle",  height: "30", width: "30" %>
+</a>
+<ul class="dropdown-menu" aria-labelledby="profile-menu">
+    <li>
+      <div class="media-left">
+            <%= form_for(@user, html: {id: "avatar_form" },
+                     format: :json,
+                     remote: true ) do |form| %>
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <% if @user.avatar.url(:medium) == "/images/medium/avatar.jpg" %>
+                <div class="notify-arrow"><span>Change</span>&#9660;</div>
+              <% end %>
+              <div class="image-upload">
+                <label for="file-input">
+                    <%= image_tag @user.avatar.url(:medium), alt: "Avatar", class: "img-circle",  height: "50", width: "50" %>
+                </label>
+                <%= form.file_field :avatar, id: "file-input", onchange: "this.form.submit()" %>
+              </div>
+            <% end %>
+      </div>
+      <div class="media-body">
+        <h5 class="media-heading">
+            <%= @user.full_name %>
+        </h5>
+        <h6>
+            <%= @user.email %>
+        </h6>
+      </div>
+    </li>
+    <li class="divider"></li>
+    <li><%= link_to "Profile", user_profile_path %></li>
+    <li><%= link_to "Past Bookings", bookings_path %></li>
+    <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+</ul>
