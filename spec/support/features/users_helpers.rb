@@ -34,7 +34,7 @@ module Features
 
     def expect_user_to_be_signed_in
       visit root_path
-      expect(page).to have_link "Log Out"
+      expect(page).not_to have_link "Sign In"
     end
 
     def expect_user_to_be_signed_out

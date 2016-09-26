@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe TravelClass, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @travel_class = create(:travel_class)
+  end
+
+  describe "#has_many" do
+    it "has many airfares" do
+      expect(@travel_class).to have_many(:airfares)
+    end
+  end
 end

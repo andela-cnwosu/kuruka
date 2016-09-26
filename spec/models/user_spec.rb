@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
   end
 
   describe "#has_many" do
-    it "should have many bookings" do
+    it "has many bookings" do
       expect(@user).to have_many(:bookings)
     end
   end
 
   describe "#has_one" do
-    it "should have one passenger" do
+    it "has one passenger" do
       expect(@user).to have_one(:passenger)
     end
   end
