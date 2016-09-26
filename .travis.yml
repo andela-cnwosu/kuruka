@@ -9,7 +9,7 @@ env:
   - DB=mysql
   - DB=postgresql
 script: 
-  - RAILS_ENV=test bundle exec rails db:migrate --trace
+  - RAILS_ENV=test bin/rails db:migrate --trace
   - bundle exec rails db:test:prepare
   - bundle exec rspec spec/
 before_script:
