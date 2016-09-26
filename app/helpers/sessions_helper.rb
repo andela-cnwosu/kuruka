@@ -28,7 +28,7 @@ module SessionsHelper
   def log_in_with_remember_token(user_id)
     user = User.find_by id: user_id
     if user && user.authenticated?(cookies[:remember_token])
-      log_in user
+      sign_in user
       @current_user = user
     end
   end
@@ -48,7 +48,6 @@ module SessionsHelper
     sign_in user
     flash_message :success, log_in_message
     redirect_to root_url
-    return
   end
 
   def set_remember_me(user)

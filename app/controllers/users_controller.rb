@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   def create
     user = User.new user_params
     if user.save
-      process_sign_in user
+      process_sign_in(user) && return
     else
-      respond_json_error full_error_message(user)
+      respond_json_error full_error_message(user) && return
     end
   end
 
