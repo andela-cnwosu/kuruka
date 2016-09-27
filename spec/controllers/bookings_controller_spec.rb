@@ -93,7 +93,7 @@ RSpec.describe BookingsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "returns a status of 200" do
+    it "returns a status of 302" do
       flight = Flight.first
       get :new, params: { flight: flight }
       post :create, params: { booking: new_booking }

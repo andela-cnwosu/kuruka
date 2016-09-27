@@ -5,5 +5,6 @@ FactoryGirl.define do
     email "user@gmail.com"
     password Auth.encrypt("password")
     remember_digest SecureRandom.urlsafe_base64
+    avatar { File.new("#{Rails.root}/spec/support/fixtures/test_image.png") } 
   end
 end

@@ -1,9 +1,8 @@
 require 'coveralls'
 Coveralls.wear!
-require "codeclimate-test-reporter"
 require "database_cleaner"
 require "capybara/rspec"
-CodeClimate::TestReporter.start
+require "paperclip/matchers"
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

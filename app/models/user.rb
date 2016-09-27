@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_digest
+  
   has_secure_password
   has_one :passenger
   has_many :bookings
@@ -34,8 +35,8 @@ class User < ApplicationRecord
   end
 
   def remember
-    User.generate_remember_token
-    update_attribute(:remember_digest, Auth.encrypt(remember_token))
+    generate_remember_token
+    update_attribute(:remember_digest, Auth.encrypt(remember_digest))
   end
 
   def authenticated?(remember_token)
@@ -49,11 +50,11 @@ class User < ApplicationRecord
 
   private
 
-    def generate_remember_token
-      self.remember_digest = SecureRandom.urlsafe_base64
-    end
+  def generate_remember_token
+    self.remember_digest = SecureRandom.urlsafe_base64
+  end
 
-    def downcase_email
-      self.email = self.email.downcase
-    end
+  def downcase_email
+    self.email = self.email.downcase
+  end
 end

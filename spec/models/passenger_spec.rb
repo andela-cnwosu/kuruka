@@ -31,4 +31,34 @@ RSpec.describe Passenger, type: :model do
       expect(@passenger).to validate_length_of(:phone)
     end
   end
+
+  describe "#validates_presence_of" do
+    it "validates presence of first name" do
+      expect(@passenger).to validate_presence_of(:first_name)
+    end
+  end
+
+  describe "#validates_presence_of" do
+    it "validates presence of last name" do
+      expect(@passenger).to validate_presence_of(:last_name)
+    end
+  end
+
+  describe "#validates_presence_of" do
+    it "validates presence of airfare" do
+      expect(@passenger).to validate_presence_of(:airfare)
+    end
+  end
+
+  describe "#full_name" do
+    it "returns the first and last name string of the passenger" do
+      expect(@passenger.full_name).to eql("Chineze Nwosu")
+    end
+  end
+
+  describe "#fare" do
+    it "returns the total cost for a passenger" do
+      expect(@passenger.fare).to eql(1100.0)
+    end
+  end
 end
