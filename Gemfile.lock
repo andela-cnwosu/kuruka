@@ -88,7 +88,6 @@ GEM
     bootstrap3-datetimepicker-rails (4.17.42)
       momentjs-rails (>= 2.8.1)
     builder (3.2.2)
-    byebug (9.0.5)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -326,7 +325,6 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails (~> 4.17.42)
-  byebug
   capybara
   capybara-webkit
   cocoon (>= 1.2.0)

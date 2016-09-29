@@ -40,11 +40,6 @@ class BookingsController < ApplicationController
     redirect_to confirm_booking_path(booking)
   end
 
-  def show_booking_error(booking)
-    flash_model_error_message booking
-    redirect_back fallback_location: new_booking_path
-  end
-
   def update
     @booking.set_total_cost
     if @booking.update booking_params
@@ -53,10 +48,6 @@ class BookingsController < ApplicationController
       flash_model_error_message @booking
     end
     redirect_back(fallback_location: edit_booking_path(@booking))
-  end
-
-  def confirm_update(booking)
-    flash_message :success, booking_update_success_message
   end
 
   def destroy
@@ -89,5 +80,14 @@ class BookingsController < ApplicationController
 
   def search_params
     params.require(:booking).permit(:booking_ref)
+  end
+
+  def show_booking_error(booking)
+    flash_model_error_message booking
+    redirect_back fallback_location: new_booking_path
+  end
+
+  def confirm_update(booking)
+    flash_message :success, booking_update_success_message
   end
 end

@@ -82,6 +82,22 @@ RSpec.describe Flight, type: :model do
     end
   end
 
+  describe ".include_joins" do
+    context "when flight is eager loaded" do
+      it "eager loads its foreign key attributes" do
+        loaded_flight = Flight.include_joins.first
+        expect(loaded_flight.association(:route).loaded?).to eql(true)
+      end
+    end
+
+    context "when flight is not eager loaded" do
+      it "eager loads its foreign key attributes" do
+        flight = Flight.first
+        expect(flight.association(:route).loaded?).to eql(false)
+      end
+    end
+  end
+
   describe "#name" do
     it "returns the name of the aircraft" do
       expect(@flight.name).to eql('5N-3HD5')
@@ -103,41 +119,41 @@ RSpec.describe Flight, type: :model do
   end
 
   describe "#instance_methods" do
-    it "responds to" do
+    it "responds to name" do
       expect(@flight).to respond_to(:name)
     end
 
-    it "responds to" do
+    it "responds to arrival" do
       expect(@flight).to respond_to(:arrival)
     end
 
-    it "responds to" do
+    it "responds to departure" do
       expect(@flight).to respond_to(:departure)
     end
   end
 
-  describe "#class_methods" do
-    it "responds to" do
-      expect(Flight).to respond_to(:set)
+  describe ".class_methods" do
+    it "responds to include_joins" do
+      expect(Flight).to respond_to(:include_joins)
     end
 
-    it "responds to" do
+    it "responds to search" do
       expect(Flight).to respond_to(:search)
     end
 
-    it "responds to" do
+    it "responds to search_by_current" do
       expect(Flight).to respond_to(:search_by_current)
     end
 
-    it "responds to" do
+    it "responds to search_by_params" do
       expect(Flight).to respond_to(:search_by_params)
     end
 
-    it "responds to" do
+    it "responds to by_day" do
       expect(Flight).to respond_to(:by_day)
     end
 
-    it "responds to" do
+    it "responds to uniq_departure_dates" do
       expect(Flight).to respond_to(:uniq_departure_dates)
     end
   end

@@ -26,7 +26,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'rails-observers', github: "rails/rails-observers"
 
 group :development, :test do
-  gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
   gem 'letter_opener'
   gem 'pry-nav'

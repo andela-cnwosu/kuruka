@@ -6,12 +6,6 @@ class Flight < ApplicationRecord
   
   accepts_nested_attributes_for :route
 
-  def self.set
-    Flight.all.includes(
-      route: [:departure_airport, :arrival_airport, airfares: [:travel_class]]
-    )
-  end
-
   def self.search(params)
     params.blank? ? search_by_current : search_by_params(params)
   end

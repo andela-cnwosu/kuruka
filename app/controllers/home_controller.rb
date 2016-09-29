@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     (redirect_to user_home_path if current_user) || (redirect_to home_path)
   end
 
+  private
+
   def set_flights
     @flights = Flight.include_joins
   end
