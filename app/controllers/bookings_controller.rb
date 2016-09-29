@@ -90,4 +90,9 @@ class BookingsController < ApplicationController
   def confirm_update(booking)
     flash_message :success, booking_update_success_message
   end
+
+  def respond_message(status, message)
+    locals = { status: status, message: message }
+    render partial: 'application/message', locals: locals
+  end
 end

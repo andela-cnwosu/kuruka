@@ -118,9 +118,26 @@ RSpec.describe BookingsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "returns a status of 302" do
-      post :create, params: { booking: new_booking }
-      expect(controller).to respond_with 302
+    context "when booking creation is successful" do
+      it "returns a status of 302" do
+        post :create, params: { booking: new_booking }
+        expect(controller).to respond_with 302
+      end
+    end
+
+    context "when booking creation fails" do
+      before do
+        new_booking[:passenger_email] = "wrong_email"
+        post :create, params: { booking: new_booking }
+      end
+
+      it "returns a flash error message" do
+        expect(flash[:error]).to be_present
+      end
+
+      it "returns a status of 302" do
+        expect(controller).to respond_with 302
+      end
     end
   end
 
@@ -136,16 +153,26 @@ RSpec.describe BookingsController, type: :controller do
       put :update, params: { id: @my_booking.id, booking: new_booking }
     end
 
-    it "assigns the requested booking as @my_booking" do
-      expect(assigns(:booking)).to eq(@my_booking)
+    context "when booking update fails" do
+      it "returns a flash error message" do
+        new_booking[:passenger_email] = "wrong_email"
+        put :update, params: { id: @my_booking.id, booking: new_booking }
+        expect(flash[:error]).to be_present
+      end
     end
 
-    it "returns a status of 302" do
-      expect(controller).to respond_with 302
-    end
+    context "when booking update is successful" do
+      it "assigns the requested booking as @my_booking" do
+        expect(assigns(:booking)).to eq(@my_booking)
+      end
 
-    it "redirects back to edit booking page" do
-      expect(response).to redirect_to(edit_booking_path)
+      it "returns a status of 302" do
+        expect(controller).to respond_with 302
+      end
+
+      it "redirects back to edit booking page" do
+        expect(response).to redirect_to(edit_booking_path)
+      end
     end
   end
 

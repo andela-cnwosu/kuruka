@@ -73,10 +73,35 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#remember" do
+  describe "#forget" do
     it "resets the initial remember digest to nil" do
       @user.forget
       expect(@user.remember_digest).to eql(nil)
+    end
+  end
+
+  describe "#authenticated?" do
+    context "when user has valid remember digest" do
+      it "returns true" do
+        @user.remember
+        expect(@user.authenticated?(@user.remember_token)).to eql(true)
+      end
+    end
+
+    context "when user has no remember digest" do
+      it "returns true" do
+        @user.remember
+        @user.update_attributes(remember_digest: nil)
+        expect(@user.authenticated?(@user.remember_token)).to eql(false)
+      end
+    end
+
+    context "when user has invalid remember digest" do
+      it "returns true" do
+        @user.remember
+        @user.update_attributes(remember_digest: "1234asdf")
+        expect(@user.authenticated?(@user.remember_token)).to eql(false)
+      end
     end
   end
 
@@ -91,6 +116,10 @@ RSpec.describe User, type: :model do
 
     it "responds to authenticate" do
       expect(@user).to respond_to(:authenticate)
+    end
+
+    it "responds to authenticated" do
+      expect(@user).to respond_to(:authenticated?)
     end
   end
 

@@ -13,7 +13,8 @@ RSpec.describe Flight, type: :model do
   before do
     create(:airport)
     create(:route)
-    @flight = create :flight
+    Flight.destroy_all
+    @flight = create(:flight)
   end
 
   describe "#has_many" do
@@ -95,6 +96,33 @@ RSpec.describe Flight, type: :model do
         flight = Flight.first
         expect(flight.association(:route).loaded?).to eql(false)
       end
+    end
+  end
+
+  describe ".search_by_current" do
+    before do
+      @flight = create :flight
+      @departed_flight = create :departed
+    end
+
+    it "returns flights that have not departed" do
+      expect(Flight.search_by_current).to include(@flight)
+    end
+
+    it "does not return flights that have departed" do
+      expect(Flight.search_by_current).not_to include(@departed_flight)
+    end
+  end
+
+  describe ".departure_order_asc" do
+    it "returns an array of dates" do
+      expect(Flight.departure_order_asc).to be_a_kind_of(Array)
+    end
+  end
+
+  describe ".uniq_departure_dates" do
+    it "returns an array of dates" do
+      expect(Flight.uniq_departure_dates).to be_a_kind_of(Array)
     end
   end
 

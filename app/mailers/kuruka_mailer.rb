@@ -20,6 +20,8 @@ class KurukaMailer < ActionMailer::Base
     )
   end
 
+  private
+
   def mail_to(booking, subject)
     @booking = booking
     @confirmation_path = "#{ENV['app_host']}/bookings/#{booking.id}/confirm"

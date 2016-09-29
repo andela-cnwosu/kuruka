@@ -5,7 +5,7 @@ RSpec.describe Payment, type: :model do
     create(:airport)
     create(:route)
     create(:flight)
-    @booking = create :booking, user: create(:user, email: "usr@gmail.com")
+    @booking = create :booking, user: create(:user, email: "payer@gmail.com")
     @payment = create :payment, booking: @booking
   end
 

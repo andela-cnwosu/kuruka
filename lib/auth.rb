@@ -6,6 +6,6 @@ class Auth
   end
 
   def self.valid?(password, encrypted_password)
-    password.eql? BCrypt::Password.new(encrypted_password)
+    BCrypt::Password.new(encrypted_password) == password
   end
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include SessionsHelper
+  
   before_action :set_user
 
   def update

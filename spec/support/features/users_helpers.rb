@@ -44,10 +44,6 @@ module Features
     def expect_invalid_login_error
       expect(page).to have_content "Your login information is incorrect"
     end
-
-    def expect_blank_param_error(param)
-      expect(page).to have_content "#{param} must not be blank"
-    end
   end
 end
 

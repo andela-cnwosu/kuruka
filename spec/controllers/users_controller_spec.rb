@@ -25,12 +25,26 @@ RSpec.describe UsersController, type: :controller do
       put :update, params: { id: @existing_user.id, user: new_user }
     end
 
-    it "returns a status of 302" do
-      expect(controller).to respond_with 302
+    context "when user update is successful" do
+      it "returns a flash success message" do
+        expect(flash[:success]).to be_present
+      end
+
+      it "returns a status of 302" do
+        expect(controller).to respond_with 302
+      end
+
+      it "redirects back to root path" do
+        expect(response).to redirect_to(root_path)
+      end
     end
 
-    it "redirects back to root path" do
-      expect(response).to redirect_to(root_path)
+    context "when user update fails" do
+      it "returns a flash error message" do
+        new_user[:email] = "wrong_email"
+        put :update, params: { id: @existing_user.id, user: new_user }
+        expect(flash[:error]).to be_present
+      end
     end
   end
 end
