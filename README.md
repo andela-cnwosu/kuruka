@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/andela-cnwosu/kuruka.svg?branch=develop)](https://travis-ci.org/andela-cnwosu/kuruka)
 [![Coverage Status](https://coveralls.io/repos/github/andela-cnwosu/kuruka/badge.svg?branch=develop)](https://coveralls.io/github/andela-cnwosu/kuruka?branch=develop)
-[![Issue Count](https://codeclimate.com/github/andela-cnwosu/kuruka/badges/issue_count.svg)](https://codeclimate.com/github/andela-cnwosu/kuruka)
+[![Code Climate](https://codeclimate.com/github/andela-cnwosu/kuruka/badges/gpa.svg)](https://codeclimate.com/github/andela-cnwosu/kuruka)
 
 ##Description
 
@@ -14,12 +14,12 @@ The application can be viewed here [Kuruka](http://kuruka.herokuapp.com)
 With this application, a user can:
 
 * search for flights according to criteria
-* book preferred flights according after selecting from search 
+* book preferred flights after selecting from search 
 * manage past bookings
 * view all past booking history
 * receive email notifications after booking a flight
 * edit a past reservation
-* have and manage a profile account
+* have and manage a user profile account
 * make payments for reservations using paypal
 
 ##Frameworks
@@ -79,6 +79,14 @@ or
 ```
 bundle exec rspec
 ```
+
+# Limitations
+
+This application can be developed further. Currently, it has the minimum features of a flight booking application and does not include:
+
+* a dashboard to show user activities and usage analytics
+* a feature for notifying users of latest updates 
+* a view for checking in passengers to a flight 
 
 # Contributing
 
