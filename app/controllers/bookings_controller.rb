@@ -37,7 +37,6 @@ class BookingsController < ApplicationController
 
   def confirm_booking(booking)
     clear_passenger_count
-    send_booking_mail booking
     redirect_to confirm_booking_path(booking)
   end
 
@@ -58,20 +57,11 @@ class BookingsController < ApplicationController
 
   def confirm_update(booking)
     flash_message :success, booking_update_success_message
-    send_booking_update_mail booking 
   end
 
   def destroy
     @booking.destroy
     redirect_back fallback_location: bookings_path
-  end
-
-  def send_booking_mail(booking)
-    KurukaMailer.booking_email(booking).deliver_now
-  end
-
-  def send_booking_update_mail(booking)
-    KurukaMailer.booking_updated_email(booking).deliver_now
   end
 
   private

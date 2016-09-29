@@ -94,8 +94,6 @@ RSpec.describe BookingsController, type: :controller do
 
   describe "POST #create" do
     it "returns a status of 302" do
-      flight = Flight.first
-      get :new, params: { flight: flight }
       post :create, params: { booking: new_booking }
       expect(controller).to respond_with 302
     end
