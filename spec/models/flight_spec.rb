@@ -12,10 +12,10 @@ RSpec.describe Flight, type: :model do
   end
 
   before do
-    create(:airport)
-    create(:route)
+    create :airport
+    create :route
     Flight.destroy_all
-    @flight = create(:flight)
+    @flight = create :flight
   end
 
   describe '#has_many' do

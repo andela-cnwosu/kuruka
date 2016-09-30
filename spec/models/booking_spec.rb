@@ -12,10 +12,10 @@ RSpec.describe Booking, type: :model do
   end
 
   before do
-    create(:airport)
-    create(:route)
-    create(:flight)
-    @booking = create :booking, user: nil
+    create :airport
+    create :route
+    create :flight
+    @booking = create(:booking, user: nil)
   end
 
   describe '#has_many' do

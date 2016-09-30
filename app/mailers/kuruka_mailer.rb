@@ -5,11 +5,11 @@ class KurukaMailer < ActionMailer::Base
   layout 'mailer'
 
   def booking_email(booking)
-    mail_to booking, booking_mail_subject_message
+    mail_to(booking, booking_mail_subject_message)
   end
 
   def booking_updated_email(booking)
-    mail_to booking, booking_update_mail_subject_message
+    mail_to(booking, booking_update_mail_subject_message)
   end
 
   def contact_email(contact)
@@ -26,6 +26,6 @@ class KurukaMailer < ActionMailer::Base
   def mail_to(booking, subject)
     @booking = booking
     @confirmation_path = "#{ENV['app_host']}/bookings/#{booking.id}/confirm"
-    mail to: booking.user_email, subject: subject
+    mail(to: booking.user_email, subject: subject)
   end
 end

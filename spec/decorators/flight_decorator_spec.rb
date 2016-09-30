@@ -11,7 +11,7 @@ RSpec.describe FlightDecorator, type: :decorator do
 
   describe '#pastize' do
     it 'responds to pastize' do
-      expect(@flight).to respond_to :pastize
+      expect(@flight).to respond_to(:pastize)
     end
 
     context 'when flight has departed' do

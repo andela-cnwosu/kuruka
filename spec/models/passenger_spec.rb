@@ -3,10 +3,10 @@ require 'rails_helper'
 
 RSpec.describe Passenger, type: :model do
   before do
-    create(:airport)
-    create(:route)
-    create(:flight)
-    @passenger = create :passenger, user: nil
+    create :airport
+    create :route
+    create :flight
+    @passenger = create(:passenger, user: nil)
   end
 
   describe '#belongs_to' do

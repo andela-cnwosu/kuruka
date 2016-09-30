@@ -4,10 +4,10 @@ require 'rails_helper'
 RSpec.describe KurukaMailer, type: :mailer do
   describe KurukaMailer do
     before(:all) do
-      create(:airport)
-      create(:route)
-      create(:flight)
-      @booking = create :booking, user: create(:user, email: 'usr@gmail.com')
+      create :airport
+      create :route
+      create :flight
+      @booking = create(:booking, user: create(:user, email: 'usr@gmail.com'))
     end
 
     let(:contact_params) do
@@ -38,7 +38,7 @@ RSpec.describe KurukaMailer, type: :mailer do
 
     describe '#contact_email' do
       it 'sends a contact message to Kuruka' do
-        @contact = Contact.new contact_params
+        @contact = Contact.new(contact_params)
         contact_mail = KurukaMailer.contact_email(@contact)
         expect { contact_mail.deliver }.to change {
           ActionMailer::Base.deliveries.count

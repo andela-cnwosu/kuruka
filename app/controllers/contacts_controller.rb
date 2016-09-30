@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class ContactsController < ApplicationController
   def send_mail
-    @contact = Contact.new contact_params
+    @contact = Contact.new(contact_params)
     KurukaMailer.contact_email(@contact).deliver
     render json: { success: true, message: contact_success_message }
   end

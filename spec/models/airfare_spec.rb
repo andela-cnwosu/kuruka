@@ -4,10 +4,10 @@ require 'rails_helper'
 RSpec.describe Airfare, type: :model do
   before do
     @country = create(:country)
-    create(:airport)
-    create(:route)
-    create(:flight)
-    @airfare = create(:airfare)
+    create :airport
+    create :route
+    create :flight
+    @airfare = create :airfare
   end
 
   describe '#belong_to' do

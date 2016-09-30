@@ -14,10 +14,12 @@ class PaymentsController < ApplicationController
 
   def create_payment_and_redirect
     @booking = Booking.find_by(booking_ref: params[:invoice])
-    Payment.create(booking: @booking,
-                   status: :successful,
-                   transaction_ref: params[:txn_id],
-                   payment_date: Time.now)
+    Payment.create(
+      booking: @booking,
+      status: :successful,
+      transaction_ref: params[:txn_id],
+      payment_date: Time.now
+    )
     redirect_to confirm_booking_path(@booking)
   end
 end

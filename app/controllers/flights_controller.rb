@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 class FlightsController < ApplicationController
   def search
-    @flights = Flight.search reject_empty_routes
+    @flights = Flight.search(reject_empty_routes)
     set_passenger_count
-    render partial: 'flights/search_results', locals: {
-      flights: decorated_flights,
-      depart_date: search_params[:departure_date]
-    }
+    render(
+      partial: 'flights/search_results', locals: {
+        flights: decorated_flights,
+        depart_date: search_params[:departure_date]
+      }
+    )
   end
 
   def reject_empty(value_params)
@@ -18,7 +20,7 @@ class FlightsController < ApplicationController
   end
 
   def reject_empty_routes
-    reject_empty(search_params.slice(:routes))
+    reject_empty search_params.slice(:routes)
   end
 
   def decorated_flights

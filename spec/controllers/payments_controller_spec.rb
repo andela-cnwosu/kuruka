@@ -16,14 +16,14 @@ RSpec.describe PaymentsController, type: :controller do
         post :hook, params: {
           payment_status: 'Completed', invoice: '1234ABCD', booking: booking
         }
-        expect(response).to redirect_to confirm_booking_path(booking)
+        expect(response).to redirect_to(confirm_booking_path(booking))
       end
     end
 
     context 'when status is not complete' do
       it 'redirects to new bookings path' do
         post :hook
-        expect(response).to redirect_to new_booking_path
+        expect(response).to redirect_to(new_booking_path)
       end
     end
   end

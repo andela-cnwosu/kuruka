@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Airport, type: :model do
   before do
-    @airport = create(:airport)
+    @airport = create :airport
   end
 
   describe '#has_many' do

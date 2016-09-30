@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def update
     params = user_params.reject! { |_key, value| value.blank? }
     if @user.update params
-      flash_message :success, updated_user_message
+      flash_message(:success, updated_user_message)
     else
       flash_model_error_message @user
     end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     user = User.new user_params
     if user.save
-      process_sign_in(user)
+      process_sign_in user
     else
       respond_json_error full_error_message(user)
     end

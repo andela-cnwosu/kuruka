@@ -4,9 +4,9 @@ require 'rails_helper'
 RSpec.describe ApplicationHelper, type: :helper do
   describe ApplicationHelper do
     before(:all) do
-      create(:airport)
-      create(:route)
-      create(:flight)
+      create :airport
+      create :route
+      create :flight
       @booking = create :booking
     end
 

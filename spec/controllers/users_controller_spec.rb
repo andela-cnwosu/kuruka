@@ -14,8 +14,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST #create' do
     it 'redirects to signed in page' do
-      post :create, params: { user: new_user }
-      expect(controller).to respond_with 302
+      post(:create, params: { user: new_user })
+      expect(controller).to respond_with(302)
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
     before do
       @existing_user = create :user
       new_user[:last_name] = 'Ben'
-      put :update, params: { id: @existing_user.id, user: new_user }
+      put(:update, params: { id: @existing_user.id, user: new_user })
     end
 
     context 'when user update is successful' do
@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'returns a status of 302' do
-        expect(controller).to respond_with 302
+        expect(controller).to respond_with(302)
       end
 
       it 'redirects back to root path' do
@@ -43,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when user update fails' do
       it 'returns a flash error message' do
         new_user[:email] = 'wrong_email'
-        put :update, params: { id: @existing_user.id, user: new_user }
+        put(:update, params: { id: @existing_user.id, user: new_user })
         expect(flash[:error]).to be_present
       end
     end

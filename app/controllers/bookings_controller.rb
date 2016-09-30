@@ -9,14 +9,14 @@ class BookingsController < ApplicationController
   end
 
   def select
-    flight = Flight.find_by id: params[:flight_id]
+    flight = Flight.find_by(id: params[:flight_id])
     passenger_count = session[:passenger_count]
     redirect_to new_booking_path(flight: flight, passengers: passenger_count)
   end
 
   def new
     @booking = Booking.new
-    @booking.flight = Flight.find_by id: params[:flight]
+    @booking.flight = Flight.find_by(id: params[:flight])
     @passenger_count = params[:passengers]
   end
 
@@ -24,10 +24,10 @@ class BookingsController < ApplicationController
     @booking = Booking.find_by(search_params)
     locals = { booking: @booking }
     if @booking
-      render partial: 'bookings/booking_details', locals: locals
+      render(partial: 'bookings/booking_details', locals: locals)
       return
     end
-    respond_message 'danger', no_booking_found_message(search_params)
+    respond_message('danger', no_booking_found_message(search_params))
   end
 
   def create
@@ -43,7 +43,7 @@ class BookingsController < ApplicationController
 
   def update
     @booking.set_total_cost
-    if @booking.update booking_params
+    if @booking.update(booking_params)
       confirm_update @booking
     else
       flash_model_error_message @booking
@@ -53,7 +53,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_back fallback_location: bookings_path
+    redirect_back(fallback_location: bookings_path)
   end
 
   private
@@ -85,15 +85,15 @@ class BookingsController < ApplicationController
 
   def show_booking_error(booking)
     flash_model_error_message booking
-    redirect_back fallback_location: new_booking_path
+    redirect_back(fallback_location: new_booking_path)
   end
 
   def confirm_update(_booking)
-    flash_message :success, booking_update_success_message
+    flash_message(:success, booking_update_success_message)
   end
 
   def respond_message(status, message)
     locals = { status: status, message: message }
-    render partial: 'application/message', locals: locals
+    render(partial: 'application/message', locals: locals)
   end
 end

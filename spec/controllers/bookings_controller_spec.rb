@@ -28,18 +28,18 @@ RSpec.describe BookingsController, type: :controller do
 
       it 'returns a status of 200' do
         get :index
-        expect(controller).to respond_with :ok
+        expect(controller).to respond_with(:ok)
       end
 
       it 'returns all the bookings made by the user' do
-        booking = create :booking, user: User.first
+        booking = create(:booking, user: User.first)
         get :index
-        expect(response.body).to include booking.booking_ref
+        expect(response.body).to include(booking.booking_ref)
       end
 
       it 'renders the index template' do
         get :index
-        expect(response).to render_template :index
+        expect(response).to render_template(:index)
       end
 
       it 'shows the pagination div on page' do
@@ -50,14 +50,14 @@ RSpec.describe BookingsController, type: :controller do
           bookings << create(:booking, params)
         end
         get :index
-        expect(response.body).to have_selector 'div.pagination'
+        expect(response.body).to have_selector('div.pagination')
       end
     end
 
     context 'when a user is anonymous' do
       it 'returns a redirect to the home page' do
         get :index
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to(root_path)
       end
     end
   end
@@ -66,7 +66,7 @@ RSpec.describe BookingsController, type: :controller do
     context 'when a flight is selected' do
       it 'returns a redirect to the new bookings page' do
         post :select
-        expect(response).to redirect_to new_booking_path
+        expect(response).to redirect_to(new_booking_path)
       end
     end
   end
@@ -74,22 +74,22 @@ RSpec.describe BookingsController, type: :controller do
   describe 'GET #new' do
     before do
       flight = Flight.first
-      get :new, params: { flight: flight }
+      get(:new, params: { flight: flight })
     end
 
     it 'renders the new template' do
-      expect(response).to render_template :new
+      expect(response).to render_template(:new)
     end
 
     it 'returns a status of 200' do
-      expect(controller).to respond_with :ok
+      expect(controller).to respond_with(:ok)
     end
   end
 
   describe 'POST #manage' do
     it 'returns a status of 200' do
       get :manage
-      expect(controller).to respond_with :ok
+      expect(controller).to respond_with(:ok)
     end
   end
 
@@ -97,23 +97,25 @@ RSpec.describe BookingsController, type: :controller do
     context 'when booking reference exists' do
       before do
         booking_to_find = { booking_ref: create(:booking).booking_ref }
-        post :retrieve, params: { booking: booking_to_find }
+        post(:retrieve, params: { booking: booking_to_find })
       end
 
       it 'returns a status of 200' do
-        expect(controller).to respond_with :ok
+        expect(controller).to respond_with(:ok)
       end
 
       it 'returns the booking details' do
-        expect(response).to render_template partial: 'bookings/_booking_details'
+        expect(response).to render_template(
+          partial: 'bookings/_booking_details'
+        )
       end
     end
 
     context 'when booking reference does not exist' do
       it 'return an error message' do
         booking_to_find = { booking_ref: 'WRONGREF' }
-        post :retrieve, params: { booking: booking_to_find }
-        expect(response).to render_template partial: 'application/_message'
+        post(:retrieve, params: { booking: booking_to_find })
+        expect(response).to render_template(partial: 'application/_message')
       end
     end
   end
@@ -121,15 +123,15 @@ RSpec.describe BookingsController, type: :controller do
   describe 'POST #create' do
     context 'when booking creation is successful' do
       it 'returns a status of 302' do
-        post :create, params: { booking: new_booking }
-        expect(controller).to respond_with 302
+        post(:create, params: { booking: new_booking })
+        expect(controller).to respond_with(302)
       end
     end
 
     context 'when booking creation fails' do
       before do
         new_booking[:passenger_email] = 'wrong_email'
-        post :create, params: { booking: new_booking }
+        post(:create, params: { booking: new_booking })
       end
 
       it 'returns a flash error message' do
@@ -137,7 +139,7 @@ RSpec.describe BookingsController, type: :controller do
       end
 
       it 'returns a status of 302' do
-        expect(controller).to respond_with 302
+        expect(controller).to respond_with(302)
       end
     end
   end
@@ -151,13 +153,13 @@ RSpec.describe BookingsController, type: :controller do
         phone: '09000000000',
         airfare_id: 2
       }
-      put :update, params: { id: @my_booking.id, booking: new_booking }
+      put(:update, params: { id: @my_booking.id, booking: new_booking })
     end
 
     context 'when booking update fails' do
       it 'returns a flash error message' do
         new_booking[:passenger_email] = 'wrong_email'
-        put :update, params: { id: @my_booking.id, booking: new_booking }
+        put(:update, params: { id: @my_booking.id, booking: new_booking })
         expect(flash[:error]).to be_present
       end
     end
@@ -168,7 +170,7 @@ RSpec.describe BookingsController, type: :controller do
       end
 
       it 'returns a status of 302' do
-        expect(controller).to respond_with 302
+        expect(controller).to respond_with(302)
       end
 
       it 'redirects back to edit booking page' do
@@ -184,12 +186,12 @@ RSpec.describe BookingsController, type: :controller do
     end
 
     it 'destroys the requested booking' do
-      expect { delete :destroy, params: { id: @booking.id } }
+      expect { delete(:destroy, params: { id: @booking.id }) }
         .to change(Booking, :count).by(-1)
     end
 
     it 'redirects to the bookings list' do
-      delete :destroy, params: { id: @booking.id }
+      delete(:destroy, params: { id: @booking.id })
       expect(response).to redirect_to(bookings_path)
     end
   end

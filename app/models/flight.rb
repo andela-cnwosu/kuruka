@@ -76,8 +76,11 @@ class Flight < ApplicationRecord
   end
 
   def self.by_day(date)
-    where('departure_date between ? and ?',
-          date.beginning_of_day, date.end_of_day)
+    where(
+      'departure_date between ? and ?',
+      date.beginning_of_day,
+      date.end_of_day
+    )
   end
 
   def self.uniq_departure_dates

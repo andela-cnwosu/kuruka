@@ -84,6 +84,6 @@ module MessagesHelper
   end
 
   def flash_model_error_message(model)
-    flash_message :error, full_error_message(model)
+    flash_message(:error, full_error_message(model))
   end
 end

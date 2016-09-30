@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :bookings
   accepts_nested_attributes_for :passenger
   before_save :downcase_email
-  # before_save :generate_remember_token
   has_attached_file :avatar,
                     styles: { medium: '300x300>', thumb: '100x100#' },
                     default_url: '/images/:style/avatar.jpg'

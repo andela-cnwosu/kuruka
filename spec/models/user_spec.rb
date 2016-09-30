@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = create :user, email: 'new_user@gmail.com'
+    @user = create(:user, email: 'new_user@gmail.com')
   end
 
   describe '#has_many' do

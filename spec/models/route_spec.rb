@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Route, type: :model do
   before do
-    create(:airport)
+    create :airport
     @route = create :route
   end
 
