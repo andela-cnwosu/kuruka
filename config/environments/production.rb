@@ -1,18 +1,19 @@
+# frozen_string_literal: true
 Rails.application.configure do
   config.cache_classes = true
 
   config.eager_load = true
 
   config.consider_all_requests_local = false
-  
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.default_url_options = { host: 'smtp.sendgrid.net' }
-  
+
   config.action_controller.perform_caching = true
-  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+  config.secret_key_base = ENV['SECRET_KEY_BASE']
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
@@ -20,7 +21,7 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   config.action_mailer.perform_caching = false
 
@@ -30,7 +31,7 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)

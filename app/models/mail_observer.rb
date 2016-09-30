@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MailObserver < ActiveRecord::Observer
   observe :booking
 

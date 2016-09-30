@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Passenger, type: :model do
@@ -8,56 +9,56 @@ RSpec.describe Passenger, type: :model do
     @passenger = create :passenger, user: nil
   end
 
-  describe "#belongs_to" do
-    it "belongs to a user" do
+  describe '#belongs_to' do
+    it 'belongs to a user' do
       expect(@passenger).to belong_to(:user)
     end
   end
 
-  describe "#belongs_to" do
-    it "belongs to a booking" do
+  describe '#belongs_to' do
+    it 'belongs to a booking' do
       expect(@passenger).to belong_to(:booking)
     end
   end
 
-  describe "#belongs_to" do
-    it "belongs to an airfare" do
+  describe '#belongs_to' do
+    it 'belongs to an airfare' do
       expect(@passenger).to belong_to(:airfare)
     end
   end
 
-  describe "#validates_length_of" do
-    it "validates length of phone number" do
+  describe '#validates_length_of' do
+    it 'validates length of phone number' do
       expect(@passenger).to validate_length_of(:phone)
     end
   end
 
-  describe "#validates_presence_of" do
-    it "validates presence of first name" do
+  describe '#validates_presence_of' do
+    it 'validates presence of first name' do
       expect(@passenger).to validate_presence_of(:first_name)
     end
   end
 
-  describe "#validates_presence_of" do
-    it "validates presence of last name" do
+  describe '#validates_presence_of' do
+    it 'validates presence of last name' do
       expect(@passenger).to validate_presence_of(:last_name)
     end
   end
 
-  describe "#validates_presence_of" do
-    it "validates presence of airfare" do
+  describe '#validates_presence_of' do
+    it 'validates presence of airfare' do
       expect(@passenger).to validate_presence_of(:airfare)
     end
   end
 
-  describe "#full_name" do
-    it "returns the first and last name string of the passenger" do
-      expect(@passenger.full_name).to eql("Chineze Nwosu")
+  describe '#full_name' do
+    it 'returns the first and last name string of the passenger' do
+      expect(@passenger.full_name).to eql('Chineze Nwosu')
     end
   end
 
-  describe "#fare" do
-    it "returns the total cost for a passenger" do
+  describe '#fare' do
+    it 'returns the total cost for a passenger' do
       expect(@passenger.fare).to eql(1100.0)
     end
   end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:session][:email].downcase)
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def authenticated_user?(user)
-    user && user.authenticate(params[:session][:password])
+    user&.authenticate(params[:session][:password])
   end
 
   def destroy

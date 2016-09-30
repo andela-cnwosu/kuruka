@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Features
   module BookingHelpers
     def search_for_flight

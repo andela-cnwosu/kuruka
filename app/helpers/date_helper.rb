@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module DateHelper
   def date_range(start, duration_in_days)
     (start..duration_in_days.days.from_now)
@@ -8,31 +9,31 @@ module DateHelper
   end
 
   def day(date)
-    date.strftime("%A")
+    date.strftime('%A')
   end
 
   def month_day(date)
-    date.strftime("%B %e")
+    date.strftime('%B %e')
   end
 
   def short_month_day(date)
-    date.strftime("%b %e")
+    date.strftime('%b %e')
   end
 
   def full_date(date)
-    date.strftime("%B %e, %Y")
+    date.strftime('%B %e, %Y')
   end
 
   def full_date_time(date)
-    date.strftime("%I:%M%p  %B %e, %Y")
+    date.strftime('%I:%M%p  %B %e, %Y')
   end
 
   def short_date_time(date)
-    date.strftime("%I:%M%p  %d-%m-%Y")
+    date.strftime('%I:%M%p  %d-%m-%Y')
   end
 
   def time(date)
-    date.strftime("%I:%M%p")
+    date.strftime('%I:%M%p')
   end
 
   def parse_date(date)
@@ -40,10 +41,10 @@ module DateHelper
   end
 
   def date_without_time(datetime)
-    datetime.strftime("%Y-%m-%d")
+    datetime.strftime('%Y-%m-%d')
   end
 
   def date_human_format(datetime)
-    datetime.strftime("%d-%m-%Y")
+    datetime.strftime('%d-%m-%Y')
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :aircraft do
     tail_number '5N-3HD5'
@@ -6,4 +7,3 @@ FactoryGirl.define do
     first_capacity 6
   end
 end
-

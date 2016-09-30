@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module SessionsHelper
   def sign_in(user)
     session[:user_id] = user.id
@@ -27,10 +28,9 @@ module SessionsHelper
 
   def log_in_with_remember_token(user_id)
     user = User.find_by id: user_id
-    if user && user.authenticated?(cookies[:remember_token])
-      sign_in user
-      @current_user = user
-    end
+    return unless user&.authenticated?(cookies[:remember_token])
+    sign_in user
+    @current_user = user
   end
 
   def forget(user)
@@ -41,17 +41,18 @@ module SessionsHelper
 
   def prepare_for_sign_in(user)
     process_sign_in user
-    set_remember_me user
+    remember_user user
   end
 
   def process_sign_in(user)
     sign_in user
     flash_message :success, log_in_message
     redirect_to root_url
+    return
   end
 
-  def set_remember_me(user)
-    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+  def remember_user(user)
+    (remember(user) if params[:session][:remember_me] == '1') || forget(user)
   end
 
   def log_out
@@ -61,10 +62,9 @@ module SessionsHelper
   end
 
   def require_login
-    unless signed_in?
-      flash_message :error, require_login_message
-      redirect_to root_url
-    end
+    return if signed_in?
+    flash_message :error, require_login_message
+    redirect_to root_url
   end
 
   def set_user
@@ -81,10 +81,10 @@ module SessionsHelper
   end
 
   def current_user_id
-    (current_user.id if current_user) || nil
+    (current_user&.id) || nil
   end
 
   def respond_json_error(message)
-    render json: {success: false, errors: message}
+    render json: { success: false, errors: message }
   end
 end

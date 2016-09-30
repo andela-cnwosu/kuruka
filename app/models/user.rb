@@ -1,15 +1,16 @@
+# frozen_string_literal: true
 class User < ApplicationRecord
   attr_accessor :remember_token
-  
+
   has_secure_password
   has_one :passenger
   has_many :bookings
   accepts_nested_attributes_for :passenger
   before_save :downcase_email
   # before_save :generate_remember_token
-  has_attached_file :avatar, 
-                    styles: { :medium => "300x300>", :thumb => "100x100#" },
-                    default_url: "/images/:style/avatar.jpg"
+  has_attached_file :avatar,
+                    styles: { medium: '300x300>', thumb: '100x100#' },
+                    default_url: '/images/:style/avatar.jpg'
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   IMAGE_REGEX = /\Aimage\/.*\Z/
@@ -36,7 +37,7 @@ class User < ApplicationRecord
 
   def remember
     generate_remember_token
-    update_attribute(:remember_digest, self.remember_token)
+    update_attribute(:remember_digest, remember_token)
   end
 
   def authenticated?(remember_token)
@@ -55,6 +56,6 @@ class User < ApplicationRecord
   end
 
   def downcase_email
-    self.email = self.email.downcase
+    self.email = email.downcase
   end
 end

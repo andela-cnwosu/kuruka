@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :destroy, :confirm]
   before_action :set_user
@@ -26,7 +27,7 @@ class BookingsController < ApplicationController
       render partial: 'bookings/booking_details', locals: locals
       return
     end
-    respond_message "danger", no_booking_found_message(search_params)
+    respond_message 'danger', no_booking_found_message(search_params)
   end
 
   def create
@@ -67,7 +68,7 @@ class BookingsController < ApplicationController
       :user_id,
       :cost_in_dollar,
       :passenger_email,
-      passengers_attributes:[
+      passengers_attributes: [
         :id,
         :first_name,
         :last_name,
@@ -87,7 +88,7 @@ class BookingsController < ApplicationController
     redirect_back fallback_location: new_booking_path
   end
 
-  def confirm_update(booking)
+  def confirm_update(_booking)
     flash_message :success, booking_update_success_message
   end
 

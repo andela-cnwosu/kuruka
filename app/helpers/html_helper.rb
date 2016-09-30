@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module HtmlHelper
   def tooltip_element(title)
     "<span class='opaque' data-toggle='tooltip' data-placement='top'"\
@@ -5,6 +6,6 @@ module HtmlHelper
   end
 
   def convert_to_html_class(text)
-    text.tr(" ", "-").downcase
+    text.tr(' ', '-').downcase
   end
 end

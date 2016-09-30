@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Preview all emails at http://localhost:3000/rails/mailers/kuruka_mailer
 class KurukaMailerPreview < ActionMailer::Preview
   def booking_mail_preview
@@ -11,7 +12,7 @@ class KurukaMailerPreview < ActionMailer::Preview
   end
 
   def contact_mail_preview
-    @contact = Contact.new(name: "him", email: "her@him.she", message: "Hey")
+    @contact = Contact.new(name: 'him', email: 'her@him.she', message: 'Hey')
     KurukaMailer.contact_email(@contact)
   end
 end

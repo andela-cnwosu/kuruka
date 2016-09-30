@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :flight do
     departure_date Time.zone.now + 86_400
@@ -10,4 +11,3 @@ FactoryGirl.define do
     end
   end
 end
-

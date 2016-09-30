@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "bin/*"
+    - "config/environments/*"
+    - "config/initializers/*"
+    - "app/assets/*"
+Metrics/MethodLength:
+  Description: Avoid methods longer than 10 lines of code.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#short-methods
+  Enabled: false
+  CountComments: false
+  Max: 10
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+Metrics/ClassLength:
+  Description: Avoid classes longer than 100 lines of code.
+  Enabled: false
+  CountComments: false
+  Max: 100
