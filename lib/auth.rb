@@ -1,4 +1,5 @@
-require "bcrypt"
+# frozen_string_literal: true
+require 'bcrypt'
 
 class Auth
   def self.encrypt(password)

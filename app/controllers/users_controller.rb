@@ -1,10 +1,9 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
-  include SessionsHelper
-  
   before_action :set_user
 
   def update
-    params = user_params.reject! { |key, value| value.blank? }
+    params = user_params.reject! { |_key, value| value.blank? }
     if @user.update params
       flash_message :success, updated_user_message
     else
@@ -17,10 +16,8 @@ class UsersController < ApplicationController
     user = User.new user_params
     if user.save
       process_sign_in(user)
-      return
     else
       respond_json_error full_error_message(user)
-      return
     end
   end
 

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class KurukaMailer < ActionMailer::Base
   include MessagesHelper
-  default from: "chineze.nwosu@andela.com"
+  default from: 'chineze.nwosu@andela.com'
   layout 'mailer'
 
   def booking_email(booking)
@@ -15,7 +16,7 @@ class KurukaMailer < ActionMailer::Base
     @contact = contact
     mail(
       from: contact.email,
-      to: "chineze.nwosu@andela.com", 
+      to: 'chineze.nwosu@andela.com',
       subject: contact_mail_subject_message
     )
   end

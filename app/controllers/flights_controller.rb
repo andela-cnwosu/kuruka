@@ -1,19 +1,20 @@
+# frozen_string_literal: true
 class FlightsController < ApplicationController
   def search
     @flights = Flight.search reject_empty_routes
     set_passenger_count
     render partial: 'flights/search_results', locals: {
-        flights: decorated_flights,
-        depart_date: search_params[:departure_date]
+      flights: decorated_flights,
+      depart_date: search_params[:departure_date]
     }
   end
 
   def reject_empty(value_params)
-    value_params.delete_if {|key, value| value.blank? }
+    value_params.delete_if { |_key, value| value.blank? }
     value_params.values.each do |value|
       reject_empty(value) if value.is_a?(ActionController::Parameters)
     end
-    value_params.delete_if {|key, value| value.blank? }
+    value_params.delete_if { |_key, value| value.blank? }
   end
 
   def reject_empty_routes
@@ -25,7 +26,7 @@ class FlightsController < ApplicationController
   end
 
   private
-    
+
   def search_params
     params.require(:flight_search).permit(
       :departure_date,

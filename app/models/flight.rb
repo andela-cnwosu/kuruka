@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 class Flight < ApplicationRecord
   belongs_to :aircraft
   belongs_to :route
 
   has_many :bookings
-  
+
   accepts_nested_attributes_for :route
 
   def self.search(params)
@@ -11,17 +12,17 @@ class Flight < ApplicationRecord
   end
 
   def self.search_by_current
-    include_joins.where("departure_date > ?", Time.now)
+    include_joins.where('departure_date > ?', Time.now)
   end
 
   def self.search_by_params(search_params)
-    include_joins.
-      where(search_params).
-      where("departure_date > ?", Time.now)
+    include_joins
+      .where(search_params)
+      .where('departure_date > ?', Time.now)
   end
 
   def self.recent
-    order(:departure_date).where("departure_date > ?", Time.now)
+    order(:departure_date).where('departure_date > ?', Time.now)
   end
 
   def self.top_recent
@@ -33,7 +34,7 @@ class Flight < ApplicationRecord
   end
 
   def self.departure_date_range
-    (Date.today..self.last_by_date.departure_date)
+    (Date.today..last_by_date.departure_date)
   end
 
   def self.departure_order_asc
@@ -75,14 +76,13 @@ class Flight < ApplicationRecord
   end
 
   def self.by_day(date)
-    where("departure_date between ? and ?",
-      date.beginning_of_day, date.end_of_day
-    )
+    where('departure_date between ? and ?',
+          date.beginning_of_day, date.end_of_day)
   end
 
   def self.uniq_departure_dates
     dates = order(:departure_date).pluck(:departure_date).map do |date|
-      date.strftime("%Y-%m-%d")
+      date.strftime('%Y-%m-%d')
     end
     dates.uniq
   end

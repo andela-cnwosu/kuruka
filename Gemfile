@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -23,7 +24,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 gem 'cocoon', '>= 1.2.0'
 gem 'will_paginate', '~> 3.1.0'
-gem 'rails-observers', github: "rails/rails-observers"
+gem 'rails-observers', github: 'rails/rails-observers'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'

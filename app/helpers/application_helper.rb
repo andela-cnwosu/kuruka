@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 module ApplicationHelper
   def pack(str)
-    str.to_s.gsub(" ", "")
+    str.to_s.delete(' ')
   end
 
   def get_booking_cost(booking)

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :airport do
     name 'Nnamdi Azikiwe Airport'
@@ -6,4 +7,3 @@ FactoryGirl.define do
     state
   end
 end
-

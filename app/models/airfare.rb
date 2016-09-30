@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Airfare < ApplicationRecord
   belongs_to :travel_class
   belongs_to :route

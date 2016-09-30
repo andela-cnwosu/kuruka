@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'coveralls'
 Coveralls.wear!
-require "database_cleaner"
-require "capybara/rspec"
-require "paperclip/matchers"
+require 'database_cleaner'
+require 'capybara/rspec'
+require 'paperclip/matchers'
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

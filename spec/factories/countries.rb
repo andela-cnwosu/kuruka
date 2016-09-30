@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :country do
     name 'Nigeria'
@@ -7,4 +8,3 @@ FactoryGirl.define do
     exchange_rate 315
   end
 end
-
