@@ -28,7 +28,7 @@ module SessionsHelper
 
   def log_in_with_remember_token(user_id)
     user = User.find_by id: user_id
-    return unless user&.authenticated?(cookies[:remember_token])
+    return unless user && user.authenticated?(cookies[:remember_token])
     sign_in user
     @current_user = user
   end
@@ -81,7 +81,7 @@ module SessionsHelper
   end
 
   def current_user_id
-    (current_user&.id) || nil
+    (current_user.id if current_user) || nil
   end
 
   def respond_json_error(message)

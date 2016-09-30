@@ -56,10 +56,10 @@ class Booking < ApplicationRecord
   end
 
   def user_email
-    (user&.email) || passenger_email
+    (user.email if user) || passenger_email
   end
 
   def user_first_name
-    (user&.first_name) || user_email[/[^@]+/]
+    (user.first_name if user) || user_email[/[^@]+/]
   end
 end

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def authenticated_user?(user)
-    user&.authenticate(params[:session][:password])
+    user && user.authenticate(params[:session][:password])
   end
 
   def destroy
