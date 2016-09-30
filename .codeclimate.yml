@@ -1,10 +1,12 @@
----
 engines:
+  rubocop:
+    enabled: true
   fixme:
     enabled: true
 ratings:
    paths:
    - "app/**/*"
    - "lib/**/*"
-   - "**.rb"
-   - "**.go"
+exclude_paths:
+- spec/**/*
+- "**/vendor/**/*"
