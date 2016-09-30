@@ -86,7 +86,8 @@ This application can be developed further. Currently, it has the minimum feature
 
 * a dashboard to show user activities and usage analytics
 * a feature for notifying users of latest updates 
-* a view for checking in passengers to a flight 
+* a view for checking in passengers to a flight
+* a payment refund to users when reservations have been cancelled 
 
 # Contributing
 
