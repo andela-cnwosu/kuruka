@@ -6,11 +6,15 @@ if Rails.env.production?
 end
 require 'spec_helper'
 require 'rspec/rails'
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include FactoryGirl::Syntax::Methods
+  config.include Features::UserHelpers, type: :feature
+  config.include MessagesHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.render_views

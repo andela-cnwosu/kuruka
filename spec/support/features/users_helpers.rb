@@ -43,11 +43,11 @@ module Features
     end
 
     def expect_invalid_login_error
-      expect(page).to have_content('Your login information is incorrect')
+      expect(page).to have_content(invalid_login_message)
+    end
+
+    def invalid_login_message
+      'Your login information is incorrect'
     end
   end
-end
-
-RSpec.configure do |config|
-  config.include Features::UserHelpers, type: :feature
 end
