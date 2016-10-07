@@ -25,7 +25,7 @@ RSpec.describe SessionsController, type: :controller do
       it 'returns a json response' do
         signed_in_user[:email] = 'wrong_user@gmail.com'
         post(:create, params: { session: signed_in_user })
-        expect(response.body).to include('Your login information is incorrect')
+        expect(response.body).to include(invalid_login_message)
       end
     end
 
@@ -33,23 +33,8 @@ RSpec.describe SessionsController, type: :controller do
       it 'returns a json response' do
         signed_in_user[:password] = 'wrongpassword'
         post(:create, params: { session: signed_in_user })
-        expect(response.body).to include('Your login information is incorrect')
+        expect(response.body).to include(invalid_login_message)
       end
-    end
-  end
-
-  describe 'POST #destroy' do
-    before do
-      post(:create, params: { session: signed_in_user })
-      post :destroy
-    end
-
-    it 'redirects to root path' do
-      expect(controller).to redirect_to(root_path)
-    end
-
-    it 'responds with a flash message' do
-      expect(flash[:success]).to be_present
     end
   end
 end
