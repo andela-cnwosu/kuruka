@@ -10,6 +10,12 @@ RSpec.feature 'User logs in', js: true do
     create(:user, email: 'user@gmail.com', password: 'password')
   end
 
+  scenario 'with valid email and password' do
+    sign_in_with('user@gmail.com', 'password')
+
+    expect_user_to_be_signed_in
+  end
+
   scenario 'with invalid password' do
     sign_in_with('user@gmail.com', 'paSSword')
 

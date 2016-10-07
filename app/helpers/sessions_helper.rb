@@ -42,13 +42,13 @@ module SessionsHelper
   def prepare_for_sign_in(user)
     process_sign_in user
     remember_user user
+    return
   end
 
   def process_sign_in(user)
     sign_in user
     flash_message(:success, log_in_message)
     redirect_to root_url
-    return
   end
 
   def remember_user(user)

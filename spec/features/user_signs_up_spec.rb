@@ -12,7 +12,7 @@ RSpec.feature 'User signs up', js: true do
   scenario 'by navigating to the page' do
     visit root_path
 
-    expect(page).to have_link('Sign In')
+    expect_user_to_be_signed_out
   end
 
   scenario 'with valid email and password' do
