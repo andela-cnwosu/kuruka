@@ -12,15 +12,36 @@ RSpec.describe FlightsController, type: :controller do
     }
   end
 
-  before do
+  before(:all) do
     load "#{Rails.root}/spec/support/seed.rb"
     Seed.create_models
   end
 
   describe 'POST #search' do
-    it 'returns a status of 200' do
-      post(:search, params: { flight_search: flight_params })
-      expect(controller).to respond_with(200)
+    context "when a flight is found from the search params" do
+      before do
+        post(:search, params: { flight_search: flight_params })
+      end
+
+      it 'returns a status of 200' do
+        expect(controller).to respond_with(200)
+      end
+
+      it 'renders a search results partial' do
+        expect(response).to render_template(partial: 'flights/_search_results')
+      end
+
+      it 'assigns flights to the view' do
+        expect(assigns(:flights)).not_to be_nil
+      end
+    end
+
+    context "when a flight is not found from the search params" do
+      it 'assigns nil value of flights to the page' do
+        flight_params[:arrival_airport_id] = 0
+        post(:search, params: { flight_search: flight_params })
+        expect(assigns(:flights)).to be_empty
+      end
     end
   end
 
