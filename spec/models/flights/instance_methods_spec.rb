@@ -26,7 +26,7 @@ RSpec.describe Flight, type: :model do
       expect(@flight.arrival).to eql('Abuja')
     end
   end
-  
+
   describe '#name' do
     it 'returns the name of the aircraft' do
       expect(@flight.name).to eql('5N-3HD5')

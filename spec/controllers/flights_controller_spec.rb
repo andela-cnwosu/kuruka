@@ -18,7 +18,7 @@ RSpec.describe FlightsController, type: :controller do
   end
 
   describe 'POST #search' do
-    context "when a flight is found from the search params" do
+    context 'when a flight is found from the search params' do
       before do
         post(:search, params: { flight_search: flight_params })
       end
@@ -36,7 +36,7 @@ RSpec.describe FlightsController, type: :controller do
       end
     end
 
-    context "when a flight is not found from the search params" do
+    context 'when a flight is not found from the search params' do
       it 'assigns nil value of flights to the page' do
         flight_params[:arrival_airport_id] = 0
         post(:search, params: { flight_search: flight_params })

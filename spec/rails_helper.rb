@@ -6,7 +6,7 @@ if Rails.env.production?
 end
 require 'spec_helper'
 require 'rspec/rails'
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
 ActiveRecord::Migration.maintain_test_schema!
 
