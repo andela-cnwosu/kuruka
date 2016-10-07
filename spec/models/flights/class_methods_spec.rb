@@ -9,42 +9,6 @@ RSpec.describe Flight, type: :model do
     @flight = create :flight
   end
 
-  describe '#has_many' do
-    it 'has many bookings' do
-      expect(@flight).to have_many(:bookings)
-    end
-  end
-
-  describe '#belongs_to' do
-    it 'belongs to a aircraft' do
-      expect(@flight).to belong_to(:aircraft)
-    end
-  end
-
-  describe '#belongs_to' do
-    it 'belongs to a route' do
-      expect(@flight).to belong_to(:route)
-    end
-  end
-
-  describe '#search' do
-    it 'searches for flights' do
-      expect(@flight.departure).to eql('Abuja')
-    end
-  end
-
-  describe '#departure' do
-    it 'returns the departure city for flight' do
-      expect(@flight.departure).to eql('Abuja')
-    end
-  end
-
-  describe '#arrival' do
-    it 'returns the arrival city for flight' do
-      expect(@flight.arrival).to eql('Abuja')
-    end
-  end
-
   describe '.top_recent' do
     it 'returns the first 4 flights' do
       expect(Flight.top_recent).to include(@flight)
@@ -136,26 +100,6 @@ RSpec.describe Flight, type: :model do
   describe '.uniq_departure_dates' do
     it 'returns an array of dates' do
       expect(Flight.uniq_departure_dates).to be_a_kind_of(Array)
-    end
-  end
-
-  describe '#name' do
-    it 'returns the name of the aircraft' do
-      expect(@flight.name).to eql('5N-3HD5')
-    end
-  end
-
-  describe '#route_airports' do
-    it 'returns the departure and arrival airport name' do
-      expect(@flight.route_airports)
-        .to eql('Nnamdi Azikiwe Airport to Nnamdi Azikiwe Airport')
-    end
-  end
-
-  describe '#departed?' do
-    it 'returns true' do
-      @departed_flight = create :departed
-      expect(@departed_flight.departed?).to eql(true)
     end
   end
 end

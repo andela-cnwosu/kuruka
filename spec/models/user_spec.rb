@@ -110,17 +110,9 @@ RSpec.describe User, type: :model do
     it 'responds to password confirmation' do
       expect(@user).to respond_to(:password_confirmation)
     end
-
-    it 'responds to remember digest' do
-      expect(@user).to respond_to(:remember_digest)
-    end
-
+    
     it 'responds to authenticate' do
       expect(@user).to respond_to(:authenticate)
-    end
-
-    it 'responds to authenticated' do
-      expect(@user).to respond_to(:authenticated?)
     end
   end
 
