@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe FlightsController, type: :controller do
-  let(:flight_params) do
+  let :flight_params do
     {
       departure_date: Faker::Time.between(Date.today, 40.days.from_now, :all),
       routes: {
@@ -12,7 +12,7 @@ RSpec.describe FlightsController, type: :controller do
     }
   end
 
-  before(:all) do
+  before :all do
     load "#{Rails.root}/spec/support/seed.rb"
     Seed.create_models
   end

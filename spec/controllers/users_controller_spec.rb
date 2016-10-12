@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:new_user) do
+  let :new_user do
     {
       first_name: 'Chinese',
       last_name: 'Benny',
@@ -20,10 +20,13 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PUT #update' do
+    let! :existing_user do
+      create :user
+    end
+
     before do
-      @existing_user = create :user
       new_user[:last_name] = 'Ben'
-      put(:update, params: { id: @existing_user.id, user: new_user })
+      put(:update, params: { id: existing_user.id, user: new_user })
     end
 
     context 'when user update is successful' do
@@ -43,7 +46,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when user update fails' do
       it 'returns a flash error message' do
         new_user[:email] = 'wrong_email'
-        put(:update, params: { id: @existing_user.id, user: new_user })
+        put(:update, params: { id: existing_user.id, user: new_user })
         expect(flash[:error]).to be_present
       end
     end

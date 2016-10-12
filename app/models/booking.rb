@@ -15,7 +15,8 @@ class Booking < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :passenger_email,
-            format: EMAIL_REGEX
+            format: EMAIL_REGEX,
+            allow_blank: true
 
   def set_booking_ref
     self.booking_ref = SecureRandom.hex(4).upcase

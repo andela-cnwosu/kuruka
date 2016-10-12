@@ -40,9 +40,8 @@ module SessionsHelper
   end
 
   def prepare_for_sign_in(user)
-    process_sign_in user
     remember_user user
-    return
+    process_sign_in user
   end
 
   def process_sign_in(user)
@@ -52,7 +51,7 @@ module SessionsHelper
   end
 
   def remember_user(user)
-    (remember user if params[:session][:remember_me] == '1') || (forget user)
+    (remember(user) if params[:session][:remember_me] == '1') || forget(user)
   end
 
   def log_out

@@ -6,12 +6,15 @@ RSpec.describe Flight, type: :model do
     create :airport
     create :route
     Flight.destroy_all
-    @flight = create :flight
+  end
+
+  let! :flight do
+    create :flight
   end
 
   describe '.top_recent' do
     it 'returns the first 4 flights' do
-      expect(Flight.top_recent).to include(@flight)
+      expect(Flight.top_recent).to include(flight)
     end
   end
 
@@ -56,17 +59,20 @@ RSpec.describe Flight, type: :model do
   end
 
   describe '.search_by_current' do
-    before do
-      @flight = create :flight
-      @departed_flight = create :departed
+    let :flight do
+      create :flight
+    end
+
+    let :departed_flight do
+      create :departed_flight
     end
 
     it 'returns flights that have not departed' do
-      expect(Flight.search_by_current).to include(@flight)
+      expect(Flight.search_by_current).to include(flight)
     end
 
     it 'does not return flights that have departed' do
-      expect(Flight.search_by_current).not_to include(@departed_flight)
+      expect(Flight.search_by_current).not_to include(departed_flight)
     end
   end
 
@@ -87,7 +93,7 @@ RSpec.describe Flight, type: :model do
     end
 
     it 'does not return flights that do not take off on given date' do
-      expect(Flight.by_day(Time.now)).not_to include(@flight)
+      expect(Flight.by_day(Time.now)).not_to include(flight)
     end
   end
 

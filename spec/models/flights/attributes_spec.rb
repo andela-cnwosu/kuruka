@@ -6,24 +6,27 @@ RSpec.describe Flight, type: :model do
     create :airport
     create :route
     Flight.destroy_all
-    @flight = create :flight
+  end
+
+  subject :flight do
+    create :flight
   end
 
   describe '#has_many' do
     it 'has many bookings' do
-      expect(@flight).to have_many(:bookings)
+      expect(flight).to have_many(:bookings)
     end
   end
 
   describe '#belongs_to' do
     it 'belongs to a aircraft' do
-      expect(@flight).to belong_to(:aircraft)
+      expect(flight).to belong_to(:aircraft)
     end
   end
 
   describe '#belongs_to' do
     it 'belongs to a route' do
-      expect(@flight).to belong_to(:route)
+      expect(flight).to belong_to(:route)
     end
   end
 end

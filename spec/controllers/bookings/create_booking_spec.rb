@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe BookingsController, type: :controller do
-  let(:new_booking) do
+  let :new_booking do
     {
       flight_id: Flight.first.id,
       passenger_email: Faker::Internet.email,
@@ -15,7 +15,7 @@ RSpec.describe BookingsController, type: :controller do
     }
   end
 
-  before(:all) do
+  before :all do
     load "#{Rails.root}/spec/support/seed.rb"
     Seed.create_models
   end

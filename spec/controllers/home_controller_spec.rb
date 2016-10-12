@@ -32,9 +32,9 @@ RSpec.describe HomeController, type: :controller do
     end
 
     it 'assigns all flights to the schedule page' do
-      @flight = create(:flight)
+      flight = create(:flight)
       get :schedule
-      expect(assigns(:flights)).to include(@flight)
+      expect(assigns(:flights)).to include(flight)
     end
   end
 end

@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe BookingsController, type: :controller do
-  before(:all) do
+  before :all do
     load "#{Rails.root}/spec/support/seed.rb"
     Seed.create_models
   end

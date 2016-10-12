@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
-  let(:contact_param) do
+  let :contact_param do
     {
       name: 'Chineze',
       email: 'user@gmail.com',
