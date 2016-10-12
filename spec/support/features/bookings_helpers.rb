@@ -23,18 +23,18 @@ module Features
     end
 
     def fill_in_passenger_fields
-      within ".nested-fields" do
+      within '.nested-fields' do
         find('input[placeholder="* First Name"]').set(Faker::Name.first_name)
         find('input[placeholder="* Last Name"]').set(Faker::Name.last_name)
-        find('input[placeholder="Phone"]').set("08000000000")
+        find('input[placeholder="Phone"]').set('08000000000')
         find('.control-indicator', match: :first).click
       end
-      fill_in "booking[passenger_email]", with: Faker::Internet.email
+      fill_in 'booking[passenger_email]', with: Faker::Internet.email
     end
 
     def create_booking_with_flight(flight)
       passengers = [create(:passenger)]
-      return create(:booking, user: nil, passengers: passengers, flight: flight)
+      create(:booking, user: nil, passengers: passengers, flight: flight)
     end
   end
 end

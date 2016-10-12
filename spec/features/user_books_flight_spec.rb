@@ -12,7 +12,7 @@ RSpec.feature 'User books a flight', js: true do
     search_for_flight
     select_flight
 
-    expect(current_path).to eq("/bookings/new")
+    expect(current_path).to eq('/bookings/new')
 
     fill_in_passenger_fields
     find_button('Book Now').click

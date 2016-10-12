@@ -28,7 +28,7 @@ RSpec.describe Payment, type: :model do
       expectation = '/cgi-bin/webscr?amount=&business=&cmd=_xclick&invoice=1A'\
         '2B3C4D&item_name=Flight+from+Abuja+to+Abuja&item_number=1A2B3C4D&not'\
         'ify_url=%2Fhook&quantity=1&return=path&upload=1'
-        
+
       expect(Payment.paypal_url(booking, 'path')).to eql(expectation)
     end
   end

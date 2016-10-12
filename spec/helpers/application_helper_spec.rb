@@ -14,13 +14,13 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     describe '#get_booking_cost' do
-      context "when booking cost is nil" do
+      context 'when booking cost is nil' do
         it 'returns 0.00' do
           expect(helper.get_booking_cost(booking)).to eq('0.00')
         end
       end
 
-      context "when booking cost has a value" do
+      context 'when booking cost has a value' do
         it 'returns the booking cost' do
           booking.cost_in_dollar = '123.45'
           booking.save
