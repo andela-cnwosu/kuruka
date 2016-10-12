@@ -2,15 +2,13 @@
 require 'rails_helper'
 
 RSpec.feature 'User edits bookings', js: true do
-  before do
-    load_flights
-  end
+  let!(:flight) { load_flights }
 
   let! :booking do
     create(
       :booking,
       user: nil,
-      flight: @flight,
+      flight: flight,
       passengers: [create(:passenger)]
     )
   end

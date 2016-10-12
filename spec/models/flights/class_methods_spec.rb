@@ -88,12 +88,12 @@ RSpec.describe Flight, type: :model do
 
   describe '.by_day' do
     it 'returns all flights in a particular day' do
-      flight = create :flight, departure_date: Time.now + 3600
-      expect(Flight.by_day(Time.now)).to include(flight)
+      flight = create :flight, departure_date: Time.now.middle_of_day + 3600
+      expect(Flight.by_day(Time.now.middle_of_day)).to include(flight)
     end
 
     it 'does not return flights that do not take off on given date' do
-      expect(Flight.by_day(Time.now)).not_to include(flight)
+      expect(Flight.by_day(Time.now.middle_of_day)).not_to include(flight)
     end
   end
 

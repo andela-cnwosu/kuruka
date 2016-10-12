@@ -2,11 +2,13 @@
 require 'rails_helper'
 
 RSpec.feature 'User edits profile', js: true do
+  let!(:flight) { load_flights }
+  let!(:user) { sign_in }
+
   before do
-    load_flights
-    sign_in
     visit user_home_path
   end
+
 
   scenario 'with valid credentials' do
     visit user_profile_path
@@ -16,7 +18,7 @@ RSpec.feature 'User edits profile', js: true do
 
     find_button('Update Account').click
 
-    updated_user = User.find_by(id: @user.id)
+    updated_user = User.find_by(id: user.id)
 
     expect(page.body).to include(updated_user_message)
     expect(updated_user.email).to eq('updated_user@gmail.com')

@@ -2,8 +2,8 @@
 module Features
   module BookingHelpers
     def load_flights
-      create :airport
-      @flight = create(:flight_with_route, departure_date: Time.zone.now + 3600)
+      create(:airport)
+      create(:flight_with_route, departure_date: Time.zone.now + 3600)
     end
 
     def search_for_flight

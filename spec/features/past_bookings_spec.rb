@@ -2,14 +2,15 @@
 require 'rails_helper'
 
 RSpec.feature 'User views past bookings', js: true do
+  let!(:flight) { load_flights }
+  let!(:user) { sign_in }
+
   before do
-    load_flights
-    sign_in
     visit bookings_path
   end
 
   scenario 'when reservations were made in the past' do
-    create(:booking, user: @user)
+    create(:booking, user: user)
     visit bookings_path
 
     expect(page.body).to include('You made 1 reservation in the past.')
@@ -25,8 +26,8 @@ RSpec.feature 'User views past bookings', js: true do
   end
 
   scenario 'when booked flight has already departed' do
-    flight = create :departed_flight
-    create(:booking, user: @user, flight: flight)
+    departed_flight = create(:departed_flight)
+    create(:booking, user: user, flight: departed_flight)
     visit bookings_path
 
     expect(page.body).not_to have_link('Edit')

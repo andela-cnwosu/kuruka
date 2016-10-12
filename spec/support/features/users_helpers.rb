@@ -3,8 +3,9 @@ module Features
   module UserHelpers
     def sign_in
       password = 'password'
-      @user = FactoryGirl.create(:user, password: password)
-      sign_in_with(@user.email, password)
+      user = FactoryGirl.create(:user, password: password)
+      sign_in_with(user.email, password)
+      user
     end
 
     def sign_in_with(email, password)

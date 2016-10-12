@@ -2,18 +2,8 @@
 require 'rails_helper'
 
 RSpec.feature 'User manages a booking', js: true do
-  before do
-    load_flights
-  end
-
-  let! :booking do
-    create(
-      :booking,
-      user: nil,
-      passengers: [create(:passenger)],
-      flight: @flight
-    )
-  end
+  let!(:flight) { load_flights }
+  let!(:booking) { create_booking_with_flight flight }
 
   scenario 'when the booking reference exists' do
     find_booking_by_ref(booking.booking_ref)
