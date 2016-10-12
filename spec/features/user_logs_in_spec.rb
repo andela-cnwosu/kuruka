@@ -4,9 +4,7 @@ require 'support/features/users_helpers'
 
 RSpec.feature 'User logs in', js: true do
   before do
-    create :airport
-    create :route
-    create :flight
+    load_flights
     create(:user, email: 'user@gmail.com', password: 'password')
   end
 

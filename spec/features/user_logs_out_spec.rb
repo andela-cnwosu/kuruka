@@ -4,9 +4,7 @@ require 'support/features/users_helpers'
 
 RSpec.feature 'User logs out' do
   before do
-    create :airport
-    create :route
-    create :flight
+    load_flights
   end
 
   scenario 'by clicking log out link' do

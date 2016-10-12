@@ -14,6 +14,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.include Features::UserHelpers, type: :feature
+  config.include Features::BookingHelpers, type: :feature
   config.include MessagesHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

@@ -3,16 +3,18 @@ module Features
   module UserHelpers
     def sign_in
       password = 'password'
-      user = FactoryGirl.create(:user, password: password)
-      sign_in_with(user.email, password)
+      @user = FactoryGirl.create(:user, password: password)
+      sign_in_with(@user.email, password)
     end
 
     def sign_in_with(email, password)
       visit root_path
       find_link('Sign In').click
-      fill_in('session[email]', with: email)
-      fill_in('session[password]', with: password)
-      find_button('Log In').click
+      within '.modal-content' do
+        fill_in('session[email]', with: email)
+        fill_in('session[password]', with: password)
+        find_button('Log In').click
+      end
     end
 
     def sign_out

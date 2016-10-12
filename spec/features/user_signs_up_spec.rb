@@ -4,9 +4,7 @@ require 'support/features/users_helpers'
 
 RSpec.feature 'User signs up', js: true do
   before do
-    create :airport
-    create :route
-    create :flight
+    load_flights
   end
 
   scenario 'by navigating to the page' do
