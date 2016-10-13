@@ -9,7 +9,6 @@ RSpec.feature 'User edits profile', js: true do
     visit user_home_path
   end
 
-
   scenario 'with valid credentials' do
     visit user_profile_path
     fill_in 'user[first_name]', with: 'Jane'
