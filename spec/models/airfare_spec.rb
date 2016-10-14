@@ -16,19 +16,15 @@ RSpec.describe Airfare, type: :model do
     create :country
   end
 
-  describe '#belong_to' do
+  describe 'associations' do
     it 'belongs to a travel class' do
       expect(airfare).to belong_to(:travel_class)
     end
-  end
-
-  describe '#belong_to' do
+    
     it 'belongs to route' do
       expect(airfare).to belong_to(:route)
     end
-  end
 
-  describe '#has_many' do
     it 'has many passengers' do
       expect(airfare).to have_many(:passengers)
     end

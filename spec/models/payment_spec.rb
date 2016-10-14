@@ -16,7 +16,7 @@ RSpec.describe Payment, type: :model do
     create(:payment, booking: booking)
   end
 
-  describe '#belongs_to' do
+  describe 'associations' do
     it 'belongs to a booking' do
       expect(payment).to belong_to(:booking)
     end

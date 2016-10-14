@@ -10,7 +10,7 @@ module Features
 
     def sign_in_with(email, password)
       visit root_path
-      find_link('Sign In').click
+      find_link('Sign In / Sign Up').click
       within '.modal-content' do
         fill_in('session[email]', with: email)
         fill_in('session[password]', with: password)
@@ -24,7 +24,7 @@ module Features
 
     def sign_up_with(first_name, last_name, email, password, password_confirm)
       visit root_path
-      find_link('Sign In').click
+      find_link('Sign In / Sign Up').click
       within '.modal-content' do
         find_link('create an account').click
         fill_in('user[first_name]', with: first_name)
@@ -37,11 +37,11 @@ module Features
     end
 
     def expect_user_to_be_signed_in
-      expect(page).not_to have_link('Sign In')
+      expect(page).not_to have_link('Sign In / Sign Up')
     end
 
     def expect_user_to_be_signed_out
-      expect(page).to have_link('Sign In')
+      expect(page).to have_link('Sign In / Sign Up')
     end
 
     def expect_invalid_login_error

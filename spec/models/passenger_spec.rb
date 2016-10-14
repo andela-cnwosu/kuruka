@@ -12,43 +12,33 @@ RSpec.describe Passenger, type: :model do
     create(:passenger, user: nil)
   end
 
-  describe '#belongs_to' do
+  describe 'associations' do
     it 'belongs to a user' do
       expect(passenger).to belong_to(:user)
     end
-  end
 
-  describe '#belongs_to' do
     it 'belongs to a booking' do
       expect(passenger).to belong_to(:booking)
     end
-  end
 
-  describe '#belongs_to' do
     it 'belongs to an airfare' do
       expect(passenger).to belong_to(:airfare)
     end
   end
 
-  describe '#validates_length_of' do
+  describe 'validations' do
     it 'validates length of phone number' do
       expect(passenger).to validate_length_of(:phone)
     end
-  end
 
-  describe '#validates_presence_of' do
     it 'validates presence of first name' do
       expect(passenger).to validate_presence_of(:first_name)
     end
-  end
 
-  describe '#validates_presence_of' do
     it 'validates presence of last name' do
       expect(passenger).to validate_presence_of(:last_name)
     end
-  end
 
-  describe '#validates_presence_of' do
     it 'validates presence of airfare' do
       expect(passenger).to validate_presence_of(:airfare)
     end

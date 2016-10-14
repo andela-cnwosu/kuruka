@@ -19,7 +19,7 @@ RSpec.feature 'Paginate bookings', js: true do
   scenario 'with anonymous user' do
     visit bookings_path
 
-    expect(page).to have_link('Sign In')
+    expect(page).to have_link('Sign In / Sign Up')
     expect(page).to have_content(require_login_message)
   end
 end

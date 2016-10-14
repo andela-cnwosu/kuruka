@@ -18,31 +18,23 @@ RSpec.describe Booking, type: :model do
     @booking = create(:booking, user: nil)
   end
 
-  describe '#has_many' do
+  describe 'associations' do
     it 'has many passengers' do
       expect(@booking).to have_many(:passengers)
     end
-  end
 
-  describe '#has_one' do
     it 'has one payment' do
       expect(@booking).to have_one(:payment)
     end
-  end
 
-  describe '#belongs_to' do
     it 'belongs to a flight' do
       expect(@booking).to belong_to(:flight)
     end
-  end
 
-  describe '#belongs_to' do
     it 'belongs to a user' do
       expect(@booking).to belong_to(:user)
     end
-  end
 
-  describe '#accepts_nested_attributes_for' do
     it 'accepts nested attributes for passengers' do
       expect(@booking).to accept_nested_attributes_for(:passengers)
     end

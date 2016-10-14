@@ -6,7 +6,7 @@ RSpec.describe Aircraft, type: :model do
     create :aircraft
   end
 
-  describe '#has_many' do
+  describe 'associations' do
     it 'has many flights' do
       expect(aircraft).to have_many(:flights)
     end

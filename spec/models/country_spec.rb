@@ -6,7 +6,7 @@ RSpec.describe Country, type: :model do
     create :country
   end
 
-  describe '#has_many' do
+  describe 'associations' do
     it 'has many states' do
       expect(country).to have_many(:states)
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.feature 'User edits profile', js: true do
+RSpec.feature 'User updates profile', js: true do
   let!(:flight) { load_flights }
   let!(:user) { sign_in }
 

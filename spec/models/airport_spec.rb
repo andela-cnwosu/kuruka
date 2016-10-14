@@ -6,13 +6,11 @@ RSpec.describe Airport, type: :model do
     create :airport
   end
 
-  describe '#has_many' do
+  describe 'associations' do
     it 'has many departure routes' do
       expect(airport).to have_many(:departure_routes)
     end
-  end
-
-  describe '#has_many' do
+    
     it 'has many arrival routes' do
       expect(airport).to have_many(:arrival_routes)
     end
